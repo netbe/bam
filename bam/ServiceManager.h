@@ -11,10 +11,11 @@
 
 #import "CoreDataStack.h"
 #import "Entry.h"
+#import "EntryNotifier.h"
 
 @interface ServiceManager : NSObject
 @property(nonatomic, strong)CoreDataStack* coreDataStack;
-
+@property(nonatomic, strong)EntryNotifier* notifier;
 - (void)setupCoreData;
 - (Entry*)createEntryWithKey:(NSString*)key value:(NSString*)value;
 @end

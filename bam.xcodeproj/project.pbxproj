@@ -14,6 +14,7 @@
 		0145A717192914250034A245 /* ServiceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0145A716192914250034A245 /* ServiceManager.m */; };
 		0145A71819291A700034A245 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0145A70919290E030034A245 /* Model.xcdatamodeld */; };
 		0145A71B19291EEF0034A245 /* Entry.m in Sources */ = {isa = PBXBuildFile; fileRef = 0145A71A19291EEF0034A245 /* Entry.m */; };
+		0145A71E1929227D0034A245 /* EntryNotifier.m in Sources */ = {isa = PBXBuildFile; fileRef = 0145A71D1929227D0034A245 /* EntryNotifier.m */; };
 		014A97B818F8693F002DBA74 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 014A97B718F8693F002DBA74 /* Foundation.framework */; };
 		014A97BA18F8693F002DBA74 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 014A97B918F8693F002DBA74 /* CoreGraphics.framework */; };
 		014A97BC18F8693F002DBA74 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 014A97BB18F8693F002DBA74 /* UIKit.framework */; };
@@ -52,6 +53,9 @@
 		0145A716192914250034A245 /* ServiceManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServiceManager.m; sourceTree = "<group>"; };
 		0145A71919291EEF0034A245 /* Entry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Entry.h; sourceTree = "<group>"; };
 		0145A71A19291EEF0034A245 /* Entry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Entry.m; sourceTree = "<group>"; };
+		0145A71C1929227D0034A245 /* EntryNotifier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EntryNotifier.h; sourceTree = "<group>"; };
+		0145A71D1929227D0034A245 /* EntryNotifier.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EntryNotifier.m; sourceTree = "<group>"; };
+		0145A71F19293A8C0034A245 /* Model_2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model_2.xcdatamodel; sourceTree = "<group>"; };
 		014A97B418F8693F002DBA74 /* bam.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = bam.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		014A97B718F8693F002DBA74 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		014A97B918F8693F002DBA74 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -168,6 +172,8 @@
 				0145A70F19290E490034A245 /* Model */,
 				0145A715192914250034A245 /* ServiceManager.h */,
 				0145A716192914250034A245 /* ServiceManager.m */,
+				0145A71C1929227D0034A245 /* EntryNotifier.h */,
+				0145A71D1929227D0034A245 /* EntryNotifier.m */,
 			);
 			path = bam;
 			sourceTree = "<group>";
@@ -298,6 +304,7 @@
 			files = (
 				014A97C818F8693F002DBA74 /* AppDelegate.m in Sources */,
 				0136260E1928CC5700723070 /* InputView.m in Sources */,
+				0145A71E1929227D0034A245 /* EntryNotifier.m in Sources */,
 				0145A717192914250034A245 /* ServiceManager.m in Sources */,
 				0145A71419290F2F0034A245 /* CoreDataStack.m in Sources */,
 				0145A71819291A700034A245 /* Model.xcdatamodeld in Sources */,
@@ -518,9 +525,10 @@
 		0145A70919290E030034A245 /* Model.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				0145A71F19293A8C0034A245 /* Model_2.xcdatamodel */,
 				0145A70A19290E030034A245 /* Model.xcdatamodel */,
 			);
-			currentVersion = 0145A70A19290E030034A245 /* Model.xcdatamodel */;
+			currentVersion = 0145A71F19293A8C0034A245 /* Model_2.xcdatamodel */;
 			path = Model.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

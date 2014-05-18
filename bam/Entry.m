@@ -14,4 +14,8 @@
 @dynamic key;
 @dynamic value;
 
+- (NSString*)formattedString
+{
+    return [NSString stringWithFormat:@"%@ : %@", self.key, self.value];
+}
 @end

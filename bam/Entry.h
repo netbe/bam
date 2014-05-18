@@ -15,4 +15,5 @@
 @property (nonatomic, retain) NSString * key;
 @property (nonatomic, retain) NSString * value;
 
+- (NSString*)formattedString;
 @end

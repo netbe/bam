@@ -41,7 +41,7 @@ static NSString* const kModelName = @"Model";
     // add Stores
     NSURL *storeURL = [NSURL fileURLWithPath:[[self.class applicationDocumentsDirectory] stringByAppendingPathComponent:self.filename]];
     
-    if (self.options & CoreDataStackForceRemoveFileOption) {
+    if (self.options & CoreDataStackForceRemoveFileOption && [[NSFileManager defaultManager] fileExistsAtPath:storeURL.absoluteString])  {
         // TODO: remove other aliases -shm -wal
         if (![[NSFileManager defaultManager] removeItemAtURL:storeURL error:pError]) {
             NSLog(@"error setup CoreData removing db %@", *pError);
