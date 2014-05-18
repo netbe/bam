@@ -10,6 +10,9 @@
 
 #import "EntryView.h"
 
+#import "ServiceManager.h"
+
+
 @interface EntryViewController ()<UITextFieldDelegate>
 @property(nonatomic, weak)EntryView* entryView;
 @property(nonatomic, copy)NSString* key;
@@ -47,10 +50,13 @@
     [self newEntry];
 }
 #pragma mark - 
+
 - (void)newEntry
 {
     self.entryView.keyInputView.text = @"";
     self.entryView.valueInputView.text = @"";
+    self.key = nil;
+    self.value = nil;
     [self.entryView becomeFirstResponder];
 }
 - (void)saveEntry
@@ -59,8 +65,14 @@
     self.value = self.entryView.valueInputView.text;
     NSLog(@"entry saved %@ : %@", self.key, self.value);
     // TODO: save to coredata
+    id entity = [self.serviceManager createEntryWithKey:self.key value:self.value];
+    if (entity) {
+        [self newEntry];
+    }else{
+        NSLog(@"error cannot saveEntry");
+        [self.entryView becomeFirstResponder];
+    }
     
-    [self newEntry];
 }
 
 #pragma mark - UITextFieldDelegate

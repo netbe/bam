@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface EntryViewController : UIViewController
+@class ServiceManager;
 
+@interface EntryViewController : UIViewController
+@property(nonatomic, strong)ServiceManager* serviceManager;
 @end

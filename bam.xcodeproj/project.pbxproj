@@ -10,6 +10,10 @@
 		0136260B1928CA0E00723070 /* EntryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0136260A1928CA0E00723070 /* EntryViewController.m */; };
 		0136260E1928CC5700723070 /* InputView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0136260D1928CC5700723070 /* InputView.m */; };
 		0145A7081929079B0034A245 /* EntryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0145A7071929079B0034A245 /* EntryView.m */; };
+		0145A71419290F2F0034A245 /* CoreDataStack.m in Sources */ = {isa = PBXBuildFile; fileRef = 0145A71319290F2F0034A245 /* CoreDataStack.m */; };
+		0145A717192914250034A245 /* ServiceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0145A716192914250034A245 /* ServiceManager.m */; };
+		0145A71819291A700034A245 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0145A70919290E030034A245 /* Model.xcdatamodeld */; };
+		0145A71B19291EEF0034A245 /* Entry.m in Sources */ = {isa = PBXBuildFile; fileRef = 0145A71A19291EEF0034A245 /* Entry.m */; };
 		014A97B818F8693F002DBA74 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 014A97B718F8693F002DBA74 /* Foundation.framework */; };
 		014A97BA18F8693F002DBA74 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 014A97B918F8693F002DBA74 /* CoreGraphics.framework */; };
 		014A97BC18F8693F002DBA74 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 014A97BB18F8693F002DBA74 /* UIKit.framework */; };
@@ -41,6 +45,13 @@
 		0136260D1928CC5700723070 /* InputView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InputView.m; sourceTree = "<group>"; };
 		0145A7061929079B0034A245 /* EntryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EntryView.h; sourceTree = "<group>"; };
 		0145A7071929079B0034A245 /* EntryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EntryView.m; sourceTree = "<group>"; };
+		0145A70A19290E030034A245 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		0145A71219290F2F0034A245 /* CoreDataStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataStack.h; sourceTree = "<group>"; };
+		0145A71319290F2F0034A245 /* CoreDataStack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataStack.m; sourceTree = "<group>"; };
+		0145A715192914250034A245 /* ServiceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServiceManager.h; sourceTree = "<group>"; };
+		0145A716192914250034A245 /* ServiceManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServiceManager.m; sourceTree = "<group>"; };
+		0145A71919291EEF0034A245 /* Entry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Entry.h; sourceTree = "<group>"; };
+		0145A71A19291EEF0034A245 /* Entry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Entry.m; sourceTree = "<group>"; };
 		014A97B418F8693F002DBA74 /* bam.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = bam.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		014A97B718F8693F002DBA74 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		014A97B918F8693F002DBA74 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -83,6 +94,37 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0145A70F19290E490034A245 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				0145A71919291EEF0034A245 /* Entry.h */,
+				0145A71A19291EEF0034A245 /* Entry.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		0145A71019290E4F0034A245 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				0136260C1928CC5700723070 /* InputView.h */,
+				0136260D1928CC5700723070 /* InputView.m */,
+				0145A7061929079B0034A245 /* EntryView.h */,
+				0145A7071929079B0034A245 /* EntryView.m */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		0145A71119290E6D0034A245 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				013626091928CA0E00723070 /* EntryViewController.h */,
+				0136260A1928CA0E00723070 /* EntryViewController.m */,
+				0145A71219290F2F0034A245 /* CoreDataStack.h */,
+				0145A71319290F2F0034A245 /* CoreDataStack.m */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
 		014A97AB18F8693F002DBA74 = {
 			isa = PBXGroup;
 			children = (
@@ -120,12 +162,12 @@
 				014A97C718F8693F002DBA74 /* AppDelegate.m */,
 				014A97C918F8693F002DBA74 /* Images.xcassets */,
 				014A97BE18F8693F002DBA74 /* Supporting Files */,
-				013626091928CA0E00723070 /* EntryViewController.h */,
-				0136260A1928CA0E00723070 /* EntryViewController.m */,
-				0136260C1928CC5700723070 /* InputView.h */,
-				0136260D1928CC5700723070 /* InputView.m */,
-				0145A7061929079B0034A245 /* EntryView.h */,
-				0145A7071929079B0034A245 /* EntryView.m */,
+				0145A71119290E6D0034A245 /* ViewControllers */,
+				0145A71019290E4F0034A245 /* Views */,
+				0145A70919290E030034A245 /* Model.xcdatamodeld */,
+				0145A70F19290E490034A245 /* Model */,
+				0145A715192914250034A245 /* ServiceManager.h */,
+				0145A716192914250034A245 /* ServiceManager.m */,
 			);
 			path = bam;
 			sourceTree = "<group>";
@@ -256,6 +298,10 @@
 			files = (
 				014A97C818F8693F002DBA74 /* AppDelegate.m in Sources */,
 				0136260E1928CC5700723070 /* InputView.m in Sources */,
+				0145A717192914250034A245 /* ServiceManager.m in Sources */,
+				0145A71419290F2F0034A245 /* CoreDataStack.m in Sources */,
+				0145A71819291A700034A245 /* Model.xcdatamodeld in Sources */,
+				0145A71B19291EEF0034A245 /* Entry.m in Sources */,
 				0145A7081929079B0034A245 /* EntryView.m in Sources */,
 				0136260B1928CA0E00723070 /* EntryViewController.m in Sources */,
 				014A97C418F8693F002DBA74 /* main.m in Sources */,
@@ -467,6 +513,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		0145A70919290E030034A245 /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				0145A70A19290E030034A245 /* Model.xcdatamodel */,
+			);
+			currentVersion = 0145A70A19290E030034A245 /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 014A97AC18F8693F002DBA74 /* Project object */;
 }
