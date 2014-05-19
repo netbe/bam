@@ -8,12 +8,21 @@
 
 #import "EntryView.h"
 
+NSString * const EntryRepetitionNever = @"never";
+NSString * const EntryRepetitionSecond = @"second";
+NSString * const EntryRepetitionMinute = @"minute";
+NSString * const EntryRepetitionHour = @"hourly";
+NSString * const EntryRepetitionDay = @"daily";
+NSString * const EntryRepetitionWeek = @"weekly";
+
 @implementation EntryView
 
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
+        self.layer.cornerRadius = 5;
+
         self.backgroundColor = [UIColor whiteColor];
         self.keyInputView = ({
             InputView* view = InputView.new;
@@ -27,40 +36,56 @@
             view;
         });
         
-        NSDictionary* views = NSDictionaryOfVariableBindings(_keyInputView, _valueInputView);
+        self.reminderControl = [[UISegmentedControl alloc] initWithItems:self.reminderValues];
+        [self addSubview:self.reminderControl];
+
+        NSDictionary* views = NSDictionaryOfVariableBindings(_keyInputView, _valueInputView, _reminderControl);
         for (UIView* view in views.allValues) {
             view.translatesAutoresizingMaskIntoConstraints = NO;
-            [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[view]|"
+            [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-(5)-[view]-(5)-|"
                                                                          options:0
                                                                          metrics:nil 
                                                                            views:NSDictionaryOfVariableBindings(view)]];
             
         }
-        NSArray* constraints = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-[_keyInputView(40)]-[_valueInputView(40)]"
+        NSArray* constraints = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-[_keyInputView]-[_valueInputView]-(40)-[_reminderControl]"
                                                                        options:NSLayoutFormatAlignAllCenterX
                                                                        metrics:nil 
                                                                          views:views];
         [self addConstraints:constraints];
         
-        self.keyInputView.placeholder = @"Key";     
-        self.valueInputView.placeholder = @"Value";
-        
+        [self applyDefaultValues];
     }
     return self;
 }
 
 - (BOOL)becomeFirstResponder
 {
-    
     return [self.keyInputView becomeFirstResponder];
 }
-/*
- // Only override drawRect: if you perform custom drawing.
- // An empty implementation adversely affects performance during animation.
- - (void)drawRect:(CGRect)rect
- {
- // Drawing code
- }
- */
+- (BOOL)resignFirstResponder
+{
+    return [self.keyInputView resignFirstResponder] && [self.valueInputView resignFirstResponder];;
+}
+- (void)applyDefaultValues
+{
+    self.keyInputView.placeholder = @"Key";
+    self.valueInputView.placeholder = @"Value";
+    self.reminderControl.selectedSegmentIndex = 0;
+    self.keyInputView.returnKeyType = UIReturnKeyNext;
+    self.valueInputView.returnKeyType = UIReturnKeyDone;
+}
 
+- (NSArray *)reminderValues
+{
+    if (!_reminderValues) {
+        _reminderValues = @[EntryRepetitionNever,
+                            EntryRepetitionSecond,
+                            EntryRepetitionMinute,
+                            EntryRepetitionHour,
+                            EntryRepetitionDay,
+                            EntryRepetitionWeek];
+    }
+    return _reminderValues;
+}
 @end

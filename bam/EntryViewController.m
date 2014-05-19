@@ -21,15 +21,6 @@
 
 @implementation EntryViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
 - (void)loadView
 {
     EntryView* entryView = EntryView.new;
@@ -41,7 +32,7 @@
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];        
+    [super viewDidLoad];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -49,7 +40,11 @@
     [super viewDidAppear:animated];
     [self newEntry];
 }
-#pragma mark - 
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [self.entryView resignFirstResponder];
+}
+#pragma mark -
 
 - (void)newEntry
 {
@@ -59,13 +54,28 @@
     self.value = nil;
     [self.entryView becomeFirstResponder];
 }
+
 - (void)saveEntry
 {
     self.key = self.entryView.keyInputView.text;
     self.value = self.entryView.valueInputView.text;
     NSLog(@"entry saved %@ : %@", self.key, self.value);
-    // TODO: save to coredata
-    id entity = [self.serviceManager createEntryWithKey:self.key value:self.value];
+    // save to coredata
+    NSString* selected = self.entryView.reminderValues[self.entryView.reminderControl.selectedSegmentIndex];
+    NSUInteger repeatInterval =  0;
+    if ([selected isEqualToString:EntryRepetitionSecond]) {
+        repeatInterval = NSCalendarUnitSecond;
+    }else if ([selected isEqualToString:EntryRepetitionMinute]){
+        repeatInterval = NSCalendarUnitMinute;
+    }else if ([selected isEqualToString:EntryRepetitionHour]){
+        repeatInterval = NSCalendarUnitHour;
+    }else if ([selected isEqualToString:EntryRepetitionDay]){
+        repeatInterval = NSCalendarUnitDay;
+    }else if ([selected isEqualToString:EntryRepetitionWeek]){
+        repeatInterval = NSCalendarUnitWeekday;
+    }
+    
+    id entity = [self.serviceManager createEntryWithKey:self.key value:self.value repeatInterval:repeatInterval];
     if (entity) {
         [self newEntry];
     }else{

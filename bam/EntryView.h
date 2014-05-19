@@ -9,8 +9,16 @@
 #import <UIKit/UIKit.h>
 #import "InputView.h"
 
+extern NSString * const EntryRepetitionNever;
+extern NSString * const EntryRepetitionSecond;
+extern NSString * const EntryRepetitionMinute;
+extern NSString * const EntryRepetitionHour;
+extern NSString * const EntryRepetitionDay;
+extern NSString * const EntryRepetitionWeek;
+
 @interface EntryView : UIView
 @property(nonatomic, strong)InputView* keyInputView;
 @property(nonatomic, strong)InputView* valueInputView;
-
+@property(nonatomic, strong)UISegmentedControl* reminderControl;
+@property(nonatomic, strong)NSArray* reminderValues;
 @end

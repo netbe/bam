@@ -10,5 +10,5 @@
 
 @interface EntryNotifier : NSObject
 @property(nonatomic, assign)NSUInteger defaultTime;
-- (void)scheduleNotificationWithText:(NSString*)text;
+- (void)scheduleNotificationWithText:(NSString*)text repeatInterval:(NSCalendarUnit)repeatInterval;
 @end

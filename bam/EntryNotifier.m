@@ -19,14 +19,14 @@
     return self;
 }
 
-- (void)scheduleNotificationWithText:(NSString*)text
+- (void)scheduleNotificationWithText:(NSString*)text repeatInterval:(NSCalendarUnit)repeatInterval
 {
     NSLog(@"Schedule %@", text);
     UILocalNotification* notification = [[UILocalNotification alloc] init];
-    notification.fireDate = [NSDate dateWithTimeIntervalSinceNow:self.defaultTime];
+    notification.fireDate = [NSDate date];
     notification.alertBody = text;
     notification.alertAction = NO;
-    notification.repeatInterval = NSCalendarUnitMinute;
+    notification.repeatInterval = repeatInterval;
     [[UIApplication sharedApplication] scheduleLocalNotification:notification];
 }
 @end

@@ -1,5 +1,5 @@
 //
-//  Entry.m
+//  Entry+BAMAdditions.h
 //  bam
 //
 //  Created by François Benaiteau on 19/05/14.
@@ -8,12 +8,6 @@
 
 #import "Entry.h"
 
-
-@implementation Entry
-
-@dynamic key;
-@dynamic learned;
-@dynamic repeatInterval;
-@dynamic value;
-
+@interface Entry (BAMAdditions)
++ (NSArray*)fetchEntriesInContext:(NSManagedObjectContext*)context;
 @end

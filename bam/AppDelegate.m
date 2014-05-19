@@ -8,16 +8,19 @@
 
 #import "AppDelegate.h"
 
-#import "EntryViewController.h"
+#import "MainViewController.h"
 #import "ServiceManager.h"
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    if (launchOptions && launchOptions[UIApplicationLaunchOptionsLocalNotificationKey]) {
+        
+    }
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 //    [[UIApplication sharedApplication] cancelAllLocalNotifications];    
-    EntryViewController* entryViewController = EntryViewController.new;
+    MainViewController* entryViewController = MainViewController.new;
     entryViewController.serviceManager = ServiceManager.new;
     [entryViewController.serviceManager setupCoreData];
     
@@ -28,9 +31,11 @@
 
 -(void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification
 {
-    [[UIApplication sharedApplication] presentLocalNotificationNow:notification];
+    // notification received when application is visible
+    // for now just ignore!
+//    [[UIApplication sharedApplication] presentLocalNotificationNow:notification];
 
-    NSDictionary *userInfo = notification.userInfo;
+//    NSDictionary *userInfo = notification.userInfo;
 //    NSURL *siteURL = [NSURL URLWithString:[userInfo objectForKey:@"SiteURLKey"]];
 //    [[UIApplication sharedApplication] openURL:siteURL];
 }
