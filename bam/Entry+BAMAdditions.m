@@ -20,4 +20,13 @@
     }
     return results;
 }
+
++ (NSFetchRequest*)fetchRequest;
+{
+    NSFetchRequest* request = [[NSFetchRequest alloc] initWithEntityName:@"Entry"];
+    NSSortDescriptor* sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"key" ascending:YES];
+    request.sortDescriptors = @[sortDescriptor];
+    return request;
+}
+
 @end

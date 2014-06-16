@@ -53,7 +53,7 @@ static NSString* const kModelName = @"Model";
     if (![self.persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType
                                                        configuration:nil
                                                                  URL:storeURL
-                                                             options:nil
+                                                             options:@{NSMigratePersistentStoresAutomaticallyOption: @(YES),NSInferMappingModelAutomaticallyOption: @(YES)}
                                                                error:pError])
     {
         NSLog(@"error setup CoreData %@", *pError);

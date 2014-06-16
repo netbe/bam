@@ -8,7 +8,9 @@
 
 #import <UIKit/UIKit.h>
 @class ServiceManager;
+@class Entry;
 
 @interface EntriesCollectionViewController : UICollectionViewController
 @property(nonatomic, strong)ServiceManager* serviceManager;
+@property (nonatomic, copy) void (^selectEntryBlock)(Entry* entry);
 @end

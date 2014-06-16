@@ -10,4 +10,5 @@
 
 @interface Entry (BAMAdditions)
 + (NSArray*)fetchEntriesInContext:(NSManagedObjectContext*)context;
++ (NSFetchRequest*)fetchRequest;
 @end

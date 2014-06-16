@@ -15,8 +15,7 @@
 
 @interface EntryViewController ()<UITextFieldDelegate>
 @property(nonatomic, weak)EntryView* entryView;
-@property(nonatomic, copy)NSString* key;
-@property(nonatomic, copy)NSString* value;
+
 @end
 
 @implementation EntryViewController
@@ -33,13 +32,25 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self.entryView.saveButton addTarget:self
+                                  action:@selector(saveEntry)
+                        forControlEvents:UIControlEventTouchUpInside];
+    if (!(self.key || self.value)) {
+        [self newEntry];
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    [self newEntry];
+    self.entryView.keyInputView.text = self.key;
+    self.entryView.valueInputView.text = self.value;
+//    NSString* selected = [self.entryView.reminderValues indexOfObject:self.repeatInterval];
+//    [self.entryView.reminderControl.selectedSegmentIndex];
+//    self.entryView.reminderControl.selectedSegmentIndex = self.repeatInterval;
+
 }
+
 - (void)viewWillDisappear:(BOOL)animated
 {
     [self.entryView resignFirstResponder];
@@ -52,7 +63,7 @@
     self.entryView.valueInputView.text = @"";
     self.key = nil;
     self.value = nil;
-    [self.entryView becomeFirstResponder];
+//    [self.entryView becomeFirstResponder];
 }
 
 - (void)saveEntry

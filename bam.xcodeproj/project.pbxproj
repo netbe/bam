@@ -27,6 +27,7 @@
 		014A97D318F86940002DBA74 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 014A97BB18F8693F002DBA74 /* UIKit.framework */; };
 		014A97DB18F86940002DBA74 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 014A97D918F86940002DBA74 /* InfoPlist.strings */; };
 		014A97DD18F86940002DBA74 /* bamTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 014A97DC18F86940002DBA74 /* bamTests.m */; };
+		01DD807819353B4C0027A35A /* EntryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 01DD807719353B4C0027A35A /* EntryCell.m */; };
 		01EEAC75192A44B300491AAF /* Entry+BAMAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 01EEAC74192A44B300491AAF /* Entry+BAMAdditions.m */; };
 		01EEAC78192A455900491AAF /* EntriesCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01EEAC77192A455900491AAF /* EntriesCollectionViewController.m */; };
 		01EEAC7F192A525400491AAF /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01EEAC7E192A525400491AAF /* MainViewController.m */; };
@@ -75,6 +76,8 @@
 		014A97D818F86940002DBA74 /* bamTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "bamTests-Info.plist"; sourceTree = "<group>"; };
 		014A97DA18F86940002DBA74 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		014A97DC18F86940002DBA74 /* bamTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = bamTests.m; sourceTree = "<group>"; };
+		01DD807619353B4C0027A35A /* EntryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EntryCell.h; sourceTree = "<group>"; };
+		01DD807719353B4C0027A35A /* EntryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EntryCell.m; sourceTree = "<group>"; };
 		01EEAC73192A44B300491AAF /* Entry+BAMAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Entry+BAMAdditions.h"; sourceTree = "<group>"; };
 		01EEAC74192A44B300491AAF /* Entry+BAMAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Entry+BAMAdditions.m"; sourceTree = "<group>"; };
 		01EEAC76192A455900491AAF /* EntriesCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EntriesCollectionViewController.h; sourceTree = "<group>"; };
@@ -125,6 +128,8 @@
 				0136260D1928CC5700723070 /* InputView.m */,
 				0145A7061929079B0034A245 /* EntryView.h */,
 				0145A7071929079B0034A245 /* EntryView.m */,
+				01DD807619353B4C0027A35A /* EntryCell.h */,
+				01DD807719353B4C0027A35A /* EntryCell.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -335,6 +340,7 @@
 				01EEAC75192A44B300491AAF /* Entry+BAMAdditions.m in Sources */,
 				0145A71B19291EEF0034A245 /* Entry.m in Sources */,
 				0145A7081929079B0034A245 /* EntryView.m in Sources */,
+				01DD807819353B4C0027A35A /* EntryCell.m in Sources */,
 				0136260B1928CA0E00723070 /* EntryViewController.m in Sources */,
 				014A97C418F8693F002DBA74 /* main.m in Sources */,
 				01EEAC78192A455900491AAF /* EntriesCollectionViewController.m in Sources */,

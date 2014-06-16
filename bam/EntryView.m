@@ -39,7 +39,12 @@ NSString * const EntryRepetitionWeek = @"weekly";
         self.reminderControl = [[UISegmentedControl alloc] initWithItems:self.reminderValues];
         [self addSubview:self.reminderControl];
 
-        NSDictionary* views = NSDictionaryOfVariableBindings(_keyInputView, _valueInputView, _reminderControl);
+        self.saveButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        [self.saveButton setTitle:@"SAVE" forState:UIControlStateNormal];
+        [self.saveButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [self addSubview:self.saveButton];
+        
+        NSDictionary* views = NSDictionaryOfVariableBindings(_keyInputView, _valueInputView, _reminderControl, _saveButton);
         for (UIView* view in views.allValues) {
             view.translatesAutoresizingMaskIntoConstraints = NO;
             [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-(5)-[view]-(5)-|"
@@ -52,6 +57,12 @@ NSString * const EntryRepetitionWeek = @"weekly";
                                                                        options:NSLayoutFormatAlignAllCenterX
                                                                        metrics:nil 
                                                                          views:views];
+        [self addConstraints:constraints];
+        
+        constraints = [NSLayoutConstraint constraintsWithVisualFormat:@"V:[_saveButton(40)]-|"
+                                                              options:NSLayoutFormatAlignAllCenterX
+                                                              metrics:nil
+                                                                views:views];
         [self addConstraints:constraints];
         
         [self applyDefaultValues];

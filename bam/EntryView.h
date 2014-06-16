@@ -19,6 +19,7 @@ extern NSString * const EntryRepetitionWeek;
 @interface EntryView : UIView
 @property(nonatomic, strong)InputView* keyInputView;
 @property(nonatomic, strong)InputView* valueInputView;
+@property(nonatomic, strong)UIButton* saveButton;
 @property(nonatomic, strong)UISegmentedControl* reminderControl;
 @property(nonatomic, strong)NSArray* reminderValues;
 @end

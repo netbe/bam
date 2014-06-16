@@ -10,16 +10,31 @@
 
 #import "EntryViewController.h"
 #import "EntriesCollectionViewController.h"
-
+#import "Entry.h"
 
 @interface MainViewController ()
 @property(nonatomic, strong)EntryViewController* entryViewController;
+@property(nonatomic, strong)EntryViewController* modalEntryViewController;
 @property(nonatomic, strong)EntriesCollectionViewController* collectionViewController;
 @property(nonatomic, strong)UISwipeGestureRecognizer* swipeGesture;
 @end
 
 @implementation MainViewController
+-(void)presentEntryInModalWithEntry:(Entry*)entry
+{
+    EntryViewController* vc = EntryViewController.new;
+    vc.key = entry.key;
+    vc.value = entry.value;
+    vc.repeatInterval = entry.repeatInterval;
+    [self addChildViewController:vc];
+    [self.view addSubview:vc.view];
 
+    [vc.view didMoveToSuperview];
+    vc.view.frame = (CGRect){ .size = {300, 300}};
+    vc.view.center = self.view.center;
+    self.modalEntryViewController = vc;
+    //    [weakSelf presentViewController:vc animated:YES completion:nil];
+}
 - (EntryViewController *)entryViewController
 {
     if (!_entryViewController) {
@@ -34,6 +49,10 @@
     if (!_collectionViewController) {
         _collectionViewController = EntriesCollectionViewController.new;
         _collectionViewController.serviceManager = self.serviceManager;
+        __weak __typeof(&*self)weakSelf = self;
+        _collectionViewController.selectEntryBlock = ^(Entry* entry){
+            [weakSelf presentEntryInModalWithEntry:entry];
+        };
     }
     return _collectionViewController;
 }
@@ -43,12 +62,17 @@
     [super viewDidLoad];
     self.swipeGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(switchViewController:)];
     self.swipeGesture.direction = UISwipeGestureRecognizerDirectionUp | UISwipeGestureRecognizerDirectionDown;
-
+    
     [self showViewController:self.entryViewController];
 }
 
 - (void)showViewController:(UIViewController*)viewController
 {
+    if (self.modalEntryViewController) {
+        [self.modalEntryViewController removeFromParentViewController];
+        [self.modalEntryViewController.view removeFromSuperview];
+        self.modalEntryViewController = nil;
+    }
     [self.view addSubview:viewController.view];
     NSDictionary* views = NSDictionaryOfVariableBindings(viewController.view);
     for (UIView* view in views.allValues) {
@@ -65,7 +89,7 @@
     }
     
     [viewController.view addGestureRecognizer:self.swipeGesture];
-
+    
 }
 
 - (void)switchViewController:(UISwipeGestureRecognizer*)swipeGesture
@@ -75,7 +99,7 @@
         [self.entryViewController.view removeFromSuperview];
         [self showViewController:self.collectionViewController];
     }else{
-                [self.collectionViewController.view removeFromSuperview];
+        [self.collectionViewController.view removeFromSuperview];
         [self showViewController:self.entryViewController];
     }
 }
