@@ -9,11 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @class ServiceManager;
+#import "AddEntryPresenter.h"
 
+@interface EntryViewController : UIViewController<AddEntryView>
+@property(nonatomic, weak)id<AddEntryEventHandler> eventHandler;
 
-@interface EntryViewController : UIViewController
-@property(nonatomic, strong)ServiceManager* serviceManager;
-@property(nonatomic, copy)NSString* key;
-@property(nonatomic, copy)NSString* value;
-@property(nonatomic, strong)NSNumber* repeatInterval;
 @end

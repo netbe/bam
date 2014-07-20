@@ -25,7 +25,7 @@
     EntryViewController* vc = EntryViewController.new;
     vc.key = entry.key;
     vc.value = entry.value;
-    vc.repeatInterval = entry.repeatInterval;
+//    vc.repeatInterval = entry.repeatInterval;
     [self addChildViewController:vc];
     [self.view addSubview:vc.view];
 
@@ -39,7 +39,7 @@
 {
     if (!_entryViewController) {
         _entryViewController = EntryViewController.new;
-        _entryViewController.serviceManager = self.serviceManager;
+//        _entryViewController.serviceManager = self.serviceManager;
     }
     return _entryViewController;
 }

@@ -19,6 +19,15 @@ static NSString* const kModelName = @"Model";
 
 @implementation CoreDataStack
 
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        self.filename = [[[[NSBundle mainBundle] infoDictionary] objectForKey:(__bridge NSString *)kCFBundleExecutableKey] stringByAppendingPathExtension:@"sqlite"];
+        self.options = CoreDataStackNoneOption;
+    }
+    return self;
+}
 
 - (instancetype)initWithFilename:(NSString*)filename options:(CoreDataStackOptions)options;
 {
@@ -32,6 +41,7 @@ static NSString* const kModelName = @"Model";
 
 - (BOOL)setup:(NSError**)pError
 {
+    NSError *localError = nil;
     NSURL *modelURL = [[NSBundle mainBundle] URLForResource:kModelName withExtension:@"momd"];
     NSAssert(modelURL, @"file %@.xcdatamodeld does not exist", kModelName);
     self.model = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
@@ -43,20 +53,26 @@ static NSString* const kModelName = @"Model";
     
     if (self.options & CoreDataStackForceRemoveFileOption && [[NSFileManager defaultManager] fileExistsAtPath:storeURL.absoluteString])  {
         // TODO: remove other aliases -shm -wal
-        if (![[NSFileManager defaultManager] removeItemAtURL:storeURL error:pError]) {
-            NSLog(@"error setup CoreData removing db %@", *pError);
+        if (![[NSFileManager defaultManager] removeItemAtURL:storeURL error:&localError]) {
+            NSLog(@"error setup CoreData %@", localError);
+            if (pError) {
+                *pError = localError;
+            }
             return NO;
         }
         
     }
-
+    
     if (![self.persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType
                                                        configuration:nil
                                                                  URL:storeURL
                                                              options:@{NSMigratePersistentStoresAutomaticallyOption: @(YES),NSInferMappingModelAutomaticallyOption: @(YES)}
-                                                               error:pError])
+                                                               error:&localError])
     {
-        NSLog(@"error setup CoreData %@", *pError);
+        NSLog(@"error setup CoreData %@", localError);
+        if (pError) {
+            *pError = localError;
+        }
         return NO;
     }
     return YES;
@@ -73,10 +89,7 @@ static NSString* const kModelName = @"Model";
 
 + (NSString *)applicationDocumentsDirectory
 {
-	return [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+    return [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
 }
-
-
-
 
 @end

@@ -8,8 +8,6 @@
 
 #import "InputView.h"
 
-static CGFloat const kMargin = 5;
-
 @implementation InputView
 
 - (id)initWithFrame:(CGRect)frame
@@ -17,22 +15,11 @@ static CGFloat const kMargin = 5;
     self = [super initWithFrame:frame];
     if (self) {
         self.borderStyle = UITextBorderStyleNone;
-        // Initialization code
-        self.layer.borderWidth = 1;
-        self.layer.borderColor = [UIColor redColor].CGColor;
-        self.layer.cornerRadius = 5;
-        self.tintColor = [UIColor redColor];
-        
+        // Initialization code        
         self.autocapitalizationType = UITextAutocapitalizationTypeNone;
         self.autocorrectionType = UITextAutocorrectionTypeNo;
     }
     return self;
-}
-
-- (void)setColor:(UIColor*)color
-{
-    self.layer.borderColor = color.CGColor;
-    self.tintColor = color;
 }
 
 - (CGSize)intrinsicContentSize
@@ -40,32 +27,21 @@ static CGFloat const kMargin = 5;
     return CGSizeMake(UIViewNoIntrinsicMetric, 60);
 }
 
-- (CGRect)textRectForBounds:(CGRect)bounds
-{
-    return CGRectMake(bounds.origin.x + kMargin, bounds.origin.y, bounds.size.width - kMargin, bounds.size.height);
-}
-//
-- (CGRect)placeholderRectForBounds:(CGRect)bounds
-{
-    return [self textRectForBounds:bounds];
-}
-
-- (CGRect)borderRectForBounds:(CGRect)bounds
-{
-    return [self textRectForBounds:bounds];
-}
-
-//- (CGRect)caretRectForPosition:(UITextPosition *)position
-//{
-//    return CGRectMake(self.bounds.origin.x + kMargin, self.bounds.origin.y, 1, self.bounds.size.height);
-//}
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
 - (void)drawRect:(CGRect)rect
 {
-    // Drawing code
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextSetStrokeColorWithColor(context, self.tintColor.CGColor);
+    
+    CGContextSetLineWidth(context, 2.0f);
+    
+    CGContextMoveToPoint(context, CGRectGetMinX(rect), CGRectGetMaxY(rect)); //start at this point
+    CGContextAddLineToPoint(context, CGRectGetMaxX(rect), CGRectGetMaxY(rect)); //draw to this point
+    
+    CGContextStrokePath(context);
 }
-*/
 
+- (void)tintColorDidChange
+{
+    [self setNeedsDisplay];
+}
 @end

@@ -7,9 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0128806D1963523100FCE7E4 /* EditEntryInteractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 0128806C1963523100FCE7E4 /* EditEntryInteractor.m */; };
+		012880701963529600FCE7E4 /* ListEntryInteractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 0128806F1963529600FCE7E4 /* ListEntryInteractor.m */; };
+		012880731963556700FCE7E4 /* AddEntryPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 012880721963556700FCE7E4 /* AddEntryPresenter.m */; };
+		012880761963587500FCE7E4 /* AddEntryWireframe.m in Sources */ = {isa = PBXBuildFile; fileRef = 012880751963587500FCE7E4 /* AddEntryWireframe.m */; };
+		0128807919635A1800FCE7E4 /* RootWireframe.m in Sources */ = {isa = PBXBuildFile; fileRef = 0128807819635A1800FCE7E4 /* RootWireframe.m */; };
 		0136260B1928CA0E00723070 /* EntryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0136260A1928CA0E00723070 /* EntryViewController.m */; };
 		0136260E1928CC5700723070 /* InputView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0136260D1928CC5700723070 /* InputView.m */; };
-		0145A7081929079B0034A245 /* EntryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0145A7071929079B0034A245 /* EntryView.m */; };
 		0145A71419290F2F0034A245 /* CoreDataStack.m in Sources */ = {isa = PBXBuildFile; fileRef = 0145A71319290F2F0034A245 /* CoreDataStack.m */; };
 		0145A717192914250034A245 /* ServiceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0145A716192914250034A245 /* ServiceManager.m */; };
 		0145A71819291A700034A245 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0145A70919290E030034A245 /* Model.xcdatamodeld */; };
@@ -27,6 +31,8 @@
 		014A97D318F86940002DBA74 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 014A97BB18F8693F002DBA74 /* UIKit.framework */; };
 		014A97DB18F86940002DBA74 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 014A97D918F86940002DBA74 /* InfoPlist.strings */; };
 		014A97DD18F86940002DBA74 /* bamTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 014A97DC18F86940002DBA74 /* bamTests.m */; };
+		016B5FFF1962082D00316F2B /* AddEntryInteractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 016B5FFE1962082D00316F2B /* AddEntryInteractor.m */; };
+		016B60031962092A00316F2B /* EntryDataStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 016B60021962092A00316F2B /* EntryDataStore.m */; };
 		01DD807819353B4C0027A35A /* EntryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 01DD807719353B4C0027A35A /* EntryCell.m */; };
 		01EEAC75192A44B300491AAF /* Entry+BAMAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 01EEAC74192A44B300491AAF /* Entry+BAMAdditions.m */; };
 		01EEAC78192A455900491AAF /* EntriesCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01EEAC77192A455900491AAF /* EntriesCollectionViewController.m */; };
@@ -44,12 +50,20 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0128806B1963523100FCE7E4 /* EditEntryInteractor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditEntryInteractor.h; sourceTree = "<group>"; };
+		0128806C1963523100FCE7E4 /* EditEntryInteractor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditEntryInteractor.m; sourceTree = "<group>"; };
+		0128806E1963529600FCE7E4 /* ListEntryInteractor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListEntryInteractor.h; sourceTree = "<group>"; };
+		0128806F1963529600FCE7E4 /* ListEntryInteractor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListEntryInteractor.m; sourceTree = "<group>"; };
+		012880711963556700FCE7E4 /* AddEntryPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddEntryPresenter.h; sourceTree = "<group>"; };
+		012880721963556700FCE7E4 /* AddEntryPresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddEntryPresenter.m; sourceTree = "<group>"; };
+		012880741963587500FCE7E4 /* AddEntryWireframe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddEntryWireframe.h; sourceTree = "<group>"; };
+		012880751963587500FCE7E4 /* AddEntryWireframe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddEntryWireframe.m; sourceTree = "<group>"; };
+		0128807719635A1800FCE7E4 /* RootWireframe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootWireframe.h; sourceTree = "<group>"; };
+		0128807819635A1800FCE7E4 /* RootWireframe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootWireframe.m; sourceTree = "<group>"; };
 		013626091928CA0E00723070 /* EntryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EntryViewController.h; sourceTree = "<group>"; };
 		0136260A1928CA0E00723070 /* EntryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EntryViewController.m; sourceTree = "<group>"; };
 		0136260C1928CC5700723070 /* InputView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputView.h; sourceTree = "<group>"; };
 		0136260D1928CC5700723070 /* InputView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InputView.m; sourceTree = "<group>"; };
-		0145A7061929079B0034A245 /* EntryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EntryView.h; sourceTree = "<group>"; };
-		0145A7071929079B0034A245 /* EntryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EntryView.m; sourceTree = "<group>"; };
 		0145A70A19290E030034A245 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		0145A71219290F2F0034A245 /* CoreDataStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataStack.h; sourceTree = "<group>"; };
 		0145A71319290F2F0034A245 /* CoreDataStack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataStack.m; sourceTree = "<group>"; };
@@ -76,6 +90,11 @@
 		014A97D818F86940002DBA74 /* bamTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "bamTests-Info.plist"; sourceTree = "<group>"; };
 		014A97DA18F86940002DBA74 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		014A97DC18F86940002DBA74 /* bamTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = bamTests.m; sourceTree = "<group>"; };
+		016B5FFD1962082D00316F2B /* AddEntryInteractor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddEntryInteractor.h; sourceTree = "<group>"; };
+		016B5FFE1962082D00316F2B /* AddEntryInteractor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddEntryInteractor.m; sourceTree = "<group>"; };
+		016B60011962092A00316F2B /* EntryDataStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EntryDataStore.h; sourceTree = "<group>"; };
+		016B60021962092A00316F2B /* EntryDataStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EntryDataStore.m; sourceTree = "<group>"; };
+		0187942119774219007E93F7 /* Model_ 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model_ 3.xcdatamodel"; sourceTree = "<group>"; };
 		01DD807619353B4C0027A35A /* EntryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EntryCell.h; sourceTree = "<group>"; };
 		01DD807719353B4C0027A35A /* EntryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EntryCell.m; sourceTree = "<group>"; };
 		01EEAC73192A44B300491AAF /* Entry+BAMAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Entry+BAMAdditions.h"; sourceTree = "<group>"; };
@@ -110,7 +129,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0145A70F19290E490034A245 /* Model */ = {
+		0145A70F19290E490034A245 /* Entities */ = {
 			isa = PBXGroup;
 			children = (
 				0145A71919291EEF0034A245 /* Entry.h */,
@@ -118,7 +137,7 @@
 				01EEAC73192A44B300491AAF /* Entry+BAMAdditions.h */,
 				01EEAC74192A44B300491AAF /* Entry+BAMAdditions.m */,
 			);
-			name = Model;
+			name = Entities;
 			sourceTree = "<group>";
 		};
 		0145A71019290E4F0034A245 /* Views */ = {
@@ -126,8 +145,6 @@
 			children = (
 				0136260C1928CC5700723070 /* InputView.h */,
 				0136260D1928CC5700723070 /* InputView.m */,
-				0145A7061929079B0034A245 /* EntryView.h */,
-				0145A7071929079B0034A245 /* EntryView.m */,
 				01DD807619353B4C0027A35A /* EntryCell.h */,
 				01DD807719353B4C0027A35A /* EntryCell.m */,
 			);
@@ -180,18 +197,12 @@
 		014A97BD18F8693F002DBA74 /* bam */ = {
 			isa = PBXGroup;
 			children = (
+				0159164119523C4E009884C9 /* Modules */,
+				0159164019523C09009884C9 /* Common */,
 				014A97C618F8693F002DBA74 /* AppDelegate.h */,
 				014A97C718F8693F002DBA74 /* AppDelegate.m */,
-				01EEAC79192A45F700491AAF /* CoreData */,
-				0145A71C1929227D0034A245 /* EntryNotifier.h */,
-				0145A71D1929227D0034A245 /* EntryNotifier.m */,
 				014A97C918F8693F002DBA74 /* Images.xcassets */,
-				0145A70F19290E490034A245 /* Model */,
-				0145A715192914250034A245 /* ServiceManager.h */,
-				0145A716192914250034A245 /* ServiceManager.m */,
 				014A97BE18F8693F002DBA74 /* Supporting Files */,
-				0145A71119290E6D0034A245 /* ViewControllers */,
-				0145A71019290E4F0034A245 /* Views */,
 			);
 			path = bam;
 			sourceTree = "<group>";
@@ -225,9 +236,85 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		0159164019523C09009884C9 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				0145A71119290E6D0034A245 /* ViewControllers */,
+				0145A71019290E4F0034A245 /* Views */,
+				018794221977431F007E93F7 /* Routing */,
+				016B6000196208E200316F2B /* DataManager */,
+				01EEAC79192A45F700491AAF /* CoreData */,
+				0145A71C1929227D0034A245 /* EntryNotifier.h */,
+				0145A71D1929227D0034A245 /* EntryNotifier.m */,
+				0145A715192914250034A245 /* ServiceManager.h */,
+				0145A716192914250034A245 /* ServiceManager.m */,
+			);
+			name = Common;
+			sourceTree = "<group>";
+		};
+		0159164119523C4E009884C9 /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				0159164319523C8C009884C9 /* Add */,
+				01591644195240FE009884C9 /* Edit */,
+				0159164219523C70009884C9 /* List */,
+			);
+			name = Modules;
+			sourceTree = "<group>";
+		};
+		0159164219523C70009884C9 /* List */ = {
+			isa = PBXGroup;
+			children = (
+				0128806E1963529600FCE7E4 /* ListEntryInteractor.h */,
+				0128806F1963529600FCE7E4 /* ListEntryInteractor.m */,
+			);
+			name = List;
+			sourceTree = "<group>";
+		};
+		0159164319523C8C009884C9 /* Add */ = {
+			isa = PBXGroup;
+			children = (
+				016B5FFD1962082D00316F2B /* AddEntryInteractor.h */,
+				016B5FFE1962082D00316F2B /* AddEntryInteractor.m */,
+				012880711963556700FCE7E4 /* AddEntryPresenter.h */,
+				012880721963556700FCE7E4 /* AddEntryPresenter.m */,
+				012880741963587500FCE7E4 /* AddEntryWireframe.h */,
+				012880751963587500FCE7E4 /* AddEntryWireframe.m */,
+			);
+			name = Add;
+			sourceTree = "<group>";
+		};
+		01591644195240FE009884C9 /* Edit */ = {
+			isa = PBXGroup;
+			children = (
+				0128806B1963523100FCE7E4 /* EditEntryInteractor.h */,
+				0128806C1963523100FCE7E4 /* EditEntryInteractor.m */,
+			);
+			name = Edit;
+			sourceTree = "<group>";
+		};
+		016B6000196208E200316F2B /* DataManager */ = {
+			isa = PBXGroup;
+			children = (
+				016B60011962092A00316F2B /* EntryDataStore.h */,
+				016B60021962092A00316F2B /* EntryDataStore.m */,
+			);
+			name = DataManager;
+			sourceTree = "<group>";
+		};
+		018794221977431F007E93F7 /* Routing */ = {
+			isa = PBXGroup;
+			children = (
+				0128807719635A1800FCE7E4 /* RootWireframe.h */,
+				0128807819635A1800FCE7E4 /* RootWireframe.m */,
+			);
+			name = Routing;
+			sourceTree = "<group>";
+		};
 		01EEAC79192A45F700491AAF /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
+				0145A70F19290E490034A245 /* Entities */,
 				0145A71219290F2F0034A245 /* CoreDataStack.h */,
 				0145A71319290F2F0034A245 /* CoreDataStack.m */,
 				0145A70919290E030034A245 /* Model.xcdatamodeld */,
@@ -331,18 +418,24 @@
 			buildActionMask = 2147483647;
 			files = (
 				014A97C818F8693F002DBA74 /* AppDelegate.m in Sources */,
+				012880731963556700FCE7E4 /* AddEntryPresenter.m in Sources */,
+				012880761963587500FCE7E4 /* AddEntryWireframe.m in Sources */,
 				0136260E1928CC5700723070 /* InputView.m in Sources */,
+				012880701963529600FCE7E4 /* ListEntryInteractor.m in Sources */,
 				0145A71E1929227D0034A245 /* EntryNotifier.m in Sources */,
 				0145A717192914250034A245 /* ServiceManager.m in Sources */,
 				01EEAC7F192A525400491AAF /* MainViewController.m in Sources */,
+				016B60031962092A00316F2B /* EntryDataStore.m in Sources */,
+				016B5FFF1962082D00316F2B /* AddEntryInteractor.m in Sources */,
 				0145A71419290F2F0034A245 /* CoreDataStack.m in Sources */,
 				0145A71819291A700034A245 /* Model.xcdatamodeld in Sources */,
 				01EEAC75192A44B300491AAF /* Entry+BAMAdditions.m in Sources */,
 				0145A71B19291EEF0034A245 /* Entry.m in Sources */,
-				0145A7081929079B0034A245 /* EntryView.m in Sources */,
+				0128806D1963523100FCE7E4 /* EditEntryInteractor.m in Sources */,
 				01DD807819353B4C0027A35A /* EntryCell.m in Sources */,
 				0136260B1928CA0E00723070 /* EntryViewController.m in Sources */,
 				014A97C418F8693F002DBA74 /* main.m in Sources */,
+				0128807919635A1800FCE7E4 /* RootWireframe.m in Sources */,
 				01EEAC78192A455900491AAF /* EntriesCollectionViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -557,10 +650,11 @@
 		0145A70919290E030034A245 /* Model.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				0187942119774219007E93F7 /* Model_ 3.xcdatamodel */,
 				0145A71F19293A8C0034A245 /* Model_2.xcdatamodel */,
 				0145A70A19290E030034A245 /* Model.xcdatamodel */,
 			);
-			currentVersion = 0145A71F19293A8C0034A245 /* Model_2.xcdatamodel */;
+			currentVersion = 0187942119774219007E93F7 /* Model_ 3.xcdatamodel */;
 			path = Model.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

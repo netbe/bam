@@ -10,6 +10,7 @@
 
 #import "MainViewController.h"
 #import "ServiceManager.h"
+#import "RootWireframe.h"
 
 @implementation AppDelegate
 
@@ -18,14 +19,14 @@
     if (launchOptions && launchOptions[UIApplicationLaunchOptionsLocalNotificationKey]) {
         
     }
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.rootWireframe = [[RootWireframe alloc] init];
+    [self.rootWireframe setup];
+
 //    [[UIApplication sharedApplication] cancelAllLocalNotifications];    
-    MainViewController* entryViewController = MainViewController.new;
-    entryViewController.serviceManager = ServiceManager.new;
-    [entryViewController.serviceManager setupCoreData];
-    
-    self.window.rootViewController = entryViewController;
-    [self.window makeKeyAndVisible];
+//    MainViewController* entryViewController = MainViewController.new;
+//    entryViewController.serviceManager = ServiceManager.new;
+//    [entryViewController.serviceManager setupCoreData];
+//    
     return YES;
 }
 
