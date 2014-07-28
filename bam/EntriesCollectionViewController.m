@@ -15,6 +15,7 @@ static NSString* const kCellIdentifier = @"com.bam.cell";
 
 @interface EntriesCollectionViewController ()<NSFetchedResultsControllerDelegate>
 @property(nonatomic, strong)NSFetchedResultsController* resultsController;
+@property(nonatomic, strong)UIButton* addModeButton;
 @end
 
 @implementation EntriesCollectionViewController
@@ -36,14 +37,31 @@ static NSString* const kCellIdentifier = @"com.bam.cell";
 - (void)viewDidLoad
 {    
     [super viewDidLoad];
-    self.collectionView.backgroundColor = [UIColor greenColor];
+    self.collectionView.backgroundColor = [UIColor whiteColor];
     
     NSAssert(self.eventHandler, @"must have a eventHandler");
     [self.eventHandler addGestureToView:self.view];
     [self.collectionView registerClass:[EntryCell class] forCellWithReuseIdentifier:kCellIdentifier];
+    
+    self.addModeButton = [[UIButton alloc] init];
+    [self.view addSubview:self.addModeButton];
+    [self.addModeButton setTitle:@"+" forState:UIControlStateNormal];
+    [self.addModeButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [self.addModeButton addTarget:self action:@selector(addModeButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
+    self.addModeButton.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_addModeButton(44)]|"
+                                                                      options:0 metrics:nil 
+                                                                        views:NSDictionaryOfVariableBindings(_addModeButton)]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[_addModeButton(44)]|"
+                                                                      options:0 metrics:nil
+                                                                        views:NSDictionaryOfVariableBindings(_addModeButton)]];
+
 }
 
-
+- (void)addModeButtonTapped:(id)sender
+{
+    [self.eventHandler dismissList];
+}
 
 #pragma mark - UICollectionViewDataSource
 

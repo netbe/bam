@@ -44,7 +44,7 @@
     
     [self.view setKey:nil];
     [self.view setValue:nil];
-//    [self.view focusOnKey];
+    [self.view focusOnKey];
 }
 
 - (void)updateKey:(NSString*)key
@@ -72,6 +72,6 @@
 
 - (void)presentListInterface
 {
-    [self.listWireframe presentListFromViewController:(UIViewController*)self.view];
+    [self.listWireframe presentListFromViewController:(UIViewController*)self.view interactive:NO];
 }
 @end

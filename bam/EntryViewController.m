@@ -49,7 +49,7 @@ NSString * const EntryRepetitionWeek = @"weekly";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+
     self.view.layer.cornerRadius = 5;
     self.view.backgroundColor = [UIColor whiteColor];
     
@@ -112,12 +112,20 @@ NSString * const EntryRepetitionWeek = @"weekly";
     
     // keyboard
     [self registerForKeyboardNotifications];
+    
+    UITapGestureRecognizer* gesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleGesture)];
+    [self.view addGestureRecognizer:gesture];
 }
 
-- (void)viewWillAppear:(BOOL)animated
+- (void)viewDidAppear:(BOOL)animated
 {
-    [super viewWillAppear:animated];
+    [super viewDidAppear:animated];
     [self.eventHandler prepareNewEntry];
+}
+
+- (void)handleGesture
+{
+    [[UIApplication sharedApplication] sendAction:@selector(resignFirstResponder) to:nil from:nil forEvent:nil];
 }
 
 #pragma mark - AddEntryView
@@ -248,11 +256,14 @@ static inline UIViewAnimationOptions animationOptionsWithCurve(UIViewAnimationCu
     UIViewAnimationCurve animationCurve = [[userInfo objectForKey:UIKeyboardAnimationCurveUserInfoKey] integerValue];
     CGRect kbFrame = [[userInfo objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue];
     kbFrame = [self.view convertRect:kbFrame fromView:nil];
+    self.listButtonBottomConstraint.constant = up ? -10 : (- kbFrame.size.height);
+    [self.view layoutIfNeeded];
     [UIView animateWithDuration:duration
                           delay:0
-                        options:animationOptionsWithCurve(animationCurve)
+                        options:animationOptionsWithCurve(animationCurve) | UIViewAnimationOptionBeginFromCurrentState
                      animations:^{
                          self.listButtonBottomConstraint.constant = up ? (- kbFrame.size.height) : -10;
+                         [self.view layoutIfNeeded];
                      }
                      completion:^(BOOL finished){
                      }];

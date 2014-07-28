@@ -10,6 +10,7 @@
 
 @protocol ListEventHandler <NSObject>
 - (void)addGestureToView:(UIView*)view;
+- (void)dismissList;
 @end
 
 @protocol ListView <NSObject>

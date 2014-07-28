@@ -17,10 +17,15 @@
 {
     self.interactiveTransition = [[ListInteractiveTransition alloc] init];
     __weak __typeof(&*self)weakSelf = self;
+    NSAssert(self.listWireframe, @"should not be nil");
     self.interactiveTransition.dismissListBlock = ^{
-        NSAssert(weakSelf.listWireframe, @"should not be nil");
-        [weakSelf.listWireframe dismissList];
+        [weakSelf.listWireframe dismissListInteractive:YES];
     };
     self.interactiveTransition.view = view;
+}
+
+- (void)dismissList
+{
+    [self.listWireframe dismissListInteractive:NO];
 }
 @end

@@ -109,6 +109,8 @@
 		01EEAC74192A44B300491AAF /* Entry+BAMAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Entry+BAMAdditions.m"; sourceTree = "<group>"; };
 		01EEAC76192A455900491AAF /* EntriesCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EntriesCollectionViewController.h; sourceTree = "<group>"; };
 		01EEAC77192A455900491AAF /* EntriesCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EntriesCollectionViewController.m; sourceTree = "<group>"; };
+		DF0BEFDA1B744AE48E9B0724 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+		F83EFD92C978404BB43B3E49 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -175,6 +177,7 @@
 				014A97D618F86940002DBA74 /* bamTests */,
 				014A97B618F8693F002DBA74 /* Frameworks */,
 				014A97B518F8693F002DBA74 /* Products */,
+				DF0BEFDA1B744AE48E9B0724 /* Pods.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -194,6 +197,7 @@
 				014A97B918F8693F002DBA74 /* CoreGraphics.framework */,
 				014A97BB18F8693F002DBA74 /* UIKit.framework */,
 				014A97D018F86940002DBA74 /* XCTest.framework */,
+				F83EFD92C978404BB43B3E49 /* libPods.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";

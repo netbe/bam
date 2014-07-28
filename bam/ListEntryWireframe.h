@@ -18,6 +18,6 @@
 
 @property(nonatomic, assign)BOOL presenting;// NO means dismissing
 
-- (void)presentListFromViewController:(UIViewController*)viewController;
-- (void)dismissList;
+- (void)presentListFromViewController:(UIViewController*)viewController interactive:(BOOL)interactive;
+- (void)dismissListInteractive:(BOOL)interactive;
 @end

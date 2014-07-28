@@ -1,4 +1,4 @@
-  //
+//
 //  ListInteractiveTransition.m
 //  bam
 //
@@ -10,7 +10,7 @@
 
 
 @interface ListInteractiveTransition ()
-@property(nonatomic, strong)UIPinchGestureRecognizer* gesture;
+@property(nonatomic, assign)BOOL shouldFinishAnimation;
 @end
 
 @implementation ListInteractiveTransition
@@ -20,46 +20,57 @@
     _view = view;
     UISwipeGestureRecognizer* gesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self 
                                                                                   action:@selector(pinching:)];
-    gesture.direction = UISwipeGestureRecognizerDirectionDown;
+    gesture.direction = UISwipeGestureRecognizerDirectionUp;
     [view addGestureRecognizer:gesture];
+}
+
+- (CGFloat)completionSpeed
+{
+    return 1 - self.percentComplete;
 }
 
 - (void)pinching:(UISwipeGestureRecognizer*)gesture
 {
-    if (self.dismissListBlock) {
-        self.dismissListBlock();
-    }
-    return;
+//    if (self.dismissListBlock) {
+//        self.dismissListBlock();
+//    }
+//    return;
+
     CGPoint point = [gesture locationInView:gesture.view];
     static CGPoint lastPoint;
     switch (gesture.state) {
-        case UIGestureRecognizerStatePossible:
-            break;
-        case UIGestureRecognizerStateBegan:
-            lastPoint = CGPointZero;
+        case UIGestureRecognizerStateBegan:{
+            lastPoint.y = -1;
             
-            if (self.dismissListBlock) {
-                self.dismissListBlock();
+            if (point.y > CGRectGetMidY(gesture.view.bounds)) {
+                if (self.dismissListBlock) {
+                    self.dismissListBlock();
+                }
             }
             break;
-            
+        }
         case UIGestureRecognizerStateChanged:
         {   
-            CGFloat complete = 1.0 - (point.y / CGRectGetHeight(gesture.view.frame));
-            if (complete < 0.5) {
-                
+            if (lastPoint.x == -1) {
+                lastPoint = point;
             }
+            CGFloat deltaY = lastPoint.y - point.y;
+            CGFloat complete = deltaY / CGRectGetHeight(gesture.view.frame);
+
+                self.shouldFinishAnimation = (complete < 0.5);
+
 
             [self updateInteractiveTransition:complete];
             break;
         }
         case UIGestureRecognizerStateEnded:
-            [self finishInteractiveTransition];
+            if (self.shouldFinishAnimation) {
+                [self finishInteractiveTransition];
+            }
+
             break;
         case UIGestureRecognizerStateCancelled:
             [self cancelInteractiveTransition];
-            break;
-        case UIGestureRecognizerStateFailed:
             break;
         default:
             break;

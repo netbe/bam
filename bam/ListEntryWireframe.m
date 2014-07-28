@@ -15,6 +15,7 @@
 
 @interface ListEntryWireframe ()
 @property(nonatomic, strong)EntriesCollectionViewController* listEntriesViewController;
+@property(nonatomic, assign)BOOL interactive;
 @end
 
 
@@ -37,7 +38,7 @@
     return self;
 }
 
-- (void)presentListFromViewController:(UIViewController*)viewController
+- (void)presentListFromViewController:(UIViewController*)viewController interactive:(BOOL)interactive
 {
     NSAssert(self.listEntriesViewController, @"listView must be present");
     
@@ -45,7 +46,7 @@
     [viewController presentViewController:self.listEntriesViewController animated:YES completion:NULL];
 }
 
-- (void)dismissList
+- (void)dismissListInteractive:(BOOL)interactive
 {
     NSAssert(self.listEntriesViewController, @"listView must be present");
     self.presenting = NO;
@@ -81,10 +82,17 @@
 
 - (id <UIViewControllerInteractiveTransitioning>)interactionControllerForDismissal:(id <UIViewControllerAnimatedTransitioning>)animator
 {
-    return self.presenter.interactiveTransition;
+    if (self.interactive) {
+        return self.presenter.interactiveTransition;
+    }
+    return nil;
+
 }
 
-
+- (void)animationEnded:(BOOL) transitionCompleted
+{
+    
+}
 #pragma mark -
 
 - (void)fallingTransition:(id <UIViewControllerContextTransitioning>)transitionContext reverse:(BOOL)reverse
@@ -92,7 +100,7 @@
     UIViewController* from = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
     UIViewController* to = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
     UIView* containerView = [transitionContext containerView];
-    
+    containerView.backgroundColor = [UIColor blueColor];
     if (from.view.superview != containerView) {
         [containerView addSubview:from.view]; 
     }
@@ -101,19 +109,18 @@
     
     if (reverse) {
         // move toView off bottom of the screen 
-        to.view.frame = CGRectOffset(to.view.frame, 0, CGRectGetHeight(to.view.frame));
+        to.view.frame = CGRectOffset(to.view.frame, 0, CGRectGetHeight(containerView.bounds));
     }else{
         // move toView off top of the screen 
-        to.view.frame = CGRectOffset(to.view.frame, 0, - CGRectGetHeight(to.view.frame));    
+        to.view.frame = CGRectOffset(to.view.frame, 0, - CGRectGetHeight(containerView.bounds));    
     }
     
     
     CGRect initialFromFrame = from.view.frame;
     CGRect initialToFrame = to.view.frame;
     
-    CGRect finalFromFrame = reverse ? CGRectOffset(initialFromFrame, 0, - CGRectGetHeight(initialFromFrame)) : CGRectOffset(initialFromFrame, 0, CGRectGetHeight(initialFromFrame));    
+    CGRect finalFromFrame = reverse ? CGRectOffset(initialFromFrame, 0, - CGRectGetHeight(containerView.bounds)) : CGRectOffset(initialFromFrame, 0, CGRectGetHeight(containerView.bounds));    
     CGRect finalToFrame = initialFromFrame;
-    
     
     [UIView animateWithDuration:[self transitionDuration:transitionContext]
                           delay:0 usingSpringWithDamping:0.7
@@ -129,6 +136,7 @@
                          }else{
                              [from.view removeFromSuperview];
                          }
+                         
                          [transitionContext completeTransition:!cancel];
                      }];
 }
