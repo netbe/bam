@@ -7,8 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-
+// to add interface
 @interface AddEntryWireframe : NSObject
 
 - (void)presentAddInterfaceFromViewController:(UIViewController*)viewController;
+
 @end

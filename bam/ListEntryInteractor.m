@@ -10,4 +10,13 @@
 
 @implementation ListEntryInteractor
 
+-(id)initWithDataManager:(EntryDataStore*)dataStore
+{
+    return nil;
+}
+
+-(NSArray*)findEntries
+{
+    return nil;
+}
 @end

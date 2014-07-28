@@ -12,6 +12,7 @@
 #import "AddEntryInteractor.h"
 #import "AddEntryPresenter.h"
 
+#import "ListEntryWireframe.h"
 #import "EntryDataStore.h"
 
 @implementation RootWireframe
@@ -35,7 +36,8 @@
     self.presenter = [[AddEntryPresenter alloc] init];
     self.presenter.interactor = self.interactor;
     self.presenter.view = entryViewController;
-    
+    self.presenter.listWireframe = [[ListEntryWireframe alloc] init];
+
     
     entryViewController.eventHandler = self.presenter;
     self.window.rootViewController = entryViewController;

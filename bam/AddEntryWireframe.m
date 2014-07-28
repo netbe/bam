@@ -8,14 +8,18 @@
 
 #import "AddEntryWireframe.h"
 
+#import "EntriesCollectionViewController.h"
+
 @implementation AddEntryWireframe
 
-- (void)presentListInterface
+- (void)presentListInterfaceFromViewController:(UIViewController*)viewController
 {
-
+    EntriesCollectionViewController* collectionViewController = [[EntriesCollectionViewController alloc] init];
+    
+    
 }
 
-- (void)presentAddInterface
+- (void)presentAddInterfaceFromViewController:(UIViewController*)viewController;
 {
 
 }

@@ -16,11 +16,13 @@ extern NSString * const EntryRepetitionDay;
 extern NSString * const EntryRepetitionWeek;
 
 @class AddEntryInteractor;
+@class ListEntryWireframe;
 @protocol AddEntryEventHandler <NSObject>
 - (void)prepareNewEntry;
 - (void)updateKey:(NSString*)key;
 - (void)updateValue:(NSString*)value;
 - (void)save;
+- (void)presentListInterface;
 @end
 
 @protocol AddEntryView <NSObject>
@@ -46,5 +48,6 @@ extern NSString * const EntryRepetitionWeek;
 
 @property(nonatomic, strong)AddEntryInteractor* interactor;
 @property(nonatomic, strong)id<AddEntryView> view;
+@property(nonatomic, strong)ListEntryWireframe* listWireframe;
 
 @end

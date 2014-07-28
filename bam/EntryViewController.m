@@ -72,6 +72,7 @@ NSString * const EntryRepetitionWeek = @"weekly";
     [self.listButton setTitle:@"0 entries" forState:UIControlStateNormal];
     [self.listButton sizeToFit];
     [self.listButton setTitleColor:self.view.tintColor forState:UIControlStateNormal];
+    [self.listButton addTarget:self action:@selector(showList:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.listButton];
     
     // layout
@@ -124,13 +125,11 @@ NSString * const EntryRepetitionWeek = @"weekly";
 - (void)setKey:(NSString*)key
 {
     self.keyInputView.text = key;
-    [self.keyInputView becomeFirstResponder];
 }
 
 - (void)setValue:(NSString*)value
 {
     self.valueInputView.text = value;
-    [self.valueInputView becomeFirstResponder];
 }
 
 - (void)selectReminderValueAtIndex:(NSUInteger)index
@@ -257,5 +256,12 @@ static inline UIViewAnimationOptions animationOptionsWithCurve(UIViewAnimationCu
                      }
                      completion:^(BOOL finished){
                      }];
+}
+
+#pragma mark - Actions
+
+- (void)showList:(id)sender
+{
+    [self.eventHandler presentListInterface];
 }
 @end

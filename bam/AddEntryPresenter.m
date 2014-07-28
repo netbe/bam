@@ -9,7 +9,7 @@
 #import "AddEntryPresenter.h"
 
 #import "AddEntryInteractor.h"
-
+#import "ListEntryWireframe.h"
 
 @interface AddEntryPresenter ()
 
@@ -44,7 +44,7 @@
     
     [self.view setKey:nil];
     [self.view setValue:nil];
-    [self.view focusOnKey];
+//    [self.view focusOnKey];
 }
 
 - (void)updateKey:(NSString*)key
@@ -68,5 +68,10 @@
         // might want to *dumbify* error before presenting to user
         [self.view showError:error];
     }
+}
+
+- (void)presentListInterface
+{
+    [self.listWireframe presentListFromViewController:(UIViewController*)self.view];
 }
 @end

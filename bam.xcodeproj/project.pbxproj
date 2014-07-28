@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0107A779197F1E2500C2205B /* ListEntryWireframe.m in Sources */ = {isa = PBXBuildFile; fileRef = 0107A778197F1E2500C2205B /* ListEntryWireframe.m */; };
+		0107A77C197F213800C2205B /* ListEntryPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0107A77B197F213800C2205B /* ListEntryPresenter.m */; };
 		0128806D1963523100FCE7E4 /* EditEntryInteractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 0128806C1963523100FCE7E4 /* EditEntryInteractor.m */; };
 		012880701963529600FCE7E4 /* ListEntryInteractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 0128806F1963529600FCE7E4 /* ListEntryInteractor.m */; };
 		012880731963556700FCE7E4 /* AddEntryPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 012880721963556700FCE7E4 /* AddEntryPresenter.m */; };
@@ -14,6 +16,7 @@
 		0128807919635A1800FCE7E4 /* RootWireframe.m in Sources */ = {isa = PBXBuildFile; fileRef = 0128807819635A1800FCE7E4 /* RootWireframe.m */; };
 		0136260B1928CA0E00723070 /* EntryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0136260A1928CA0E00723070 /* EntryViewController.m */; };
 		0136260E1928CC5700723070 /* InputView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0136260D1928CC5700723070 /* InputView.m */; };
+		013AC21C1983130B003A6A63 /* ListInteractiveTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 013AC21B1983130B003A6A63 /* ListInteractiveTransition.m */; };
 		0145A71419290F2F0034A245 /* CoreDataStack.m in Sources */ = {isa = PBXBuildFile; fileRef = 0145A71319290F2F0034A245 /* CoreDataStack.m */; };
 		0145A717192914250034A245 /* ServiceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0145A716192914250034A245 /* ServiceManager.m */; };
 		0145A71819291A700034A245 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0145A70919290E030034A245 /* Model.xcdatamodeld */; };
@@ -36,7 +39,6 @@
 		01DD807819353B4C0027A35A /* EntryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 01DD807719353B4C0027A35A /* EntryCell.m */; };
 		01EEAC75192A44B300491AAF /* Entry+BAMAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 01EEAC74192A44B300491AAF /* Entry+BAMAdditions.m */; };
 		01EEAC78192A455900491AAF /* EntriesCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01EEAC77192A455900491AAF /* EntriesCollectionViewController.m */; };
-		01EEAC7F192A525400491AAF /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01EEAC7E192A525400491AAF /* MainViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +52,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0107A777197F1E2500C2205B /* ListEntryWireframe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListEntryWireframe.h; sourceTree = "<group>"; };
+		0107A778197F1E2500C2205B /* ListEntryWireframe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListEntryWireframe.m; sourceTree = "<group>"; };
+		0107A77A197F213800C2205B /* ListEntryPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListEntryPresenter.h; sourceTree = "<group>"; };
+		0107A77B197F213800C2205B /* ListEntryPresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListEntryPresenter.m; sourceTree = "<group>"; };
 		0128806B1963523100FCE7E4 /* EditEntryInteractor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditEntryInteractor.h; sourceTree = "<group>"; };
 		0128806C1963523100FCE7E4 /* EditEntryInteractor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditEntryInteractor.m; sourceTree = "<group>"; };
 		0128806E1963529600FCE7E4 /* ListEntryInteractor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListEntryInteractor.h; sourceTree = "<group>"; };
@@ -64,6 +70,8 @@
 		0136260A1928CA0E00723070 /* EntryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EntryViewController.m; sourceTree = "<group>"; };
 		0136260C1928CC5700723070 /* InputView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputView.h; sourceTree = "<group>"; };
 		0136260D1928CC5700723070 /* InputView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InputView.m; sourceTree = "<group>"; };
+		013AC21A1983130B003A6A63 /* ListInteractiveTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListInteractiveTransition.h; sourceTree = "<group>"; };
+		013AC21B1983130B003A6A63 /* ListInteractiveTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListInteractiveTransition.m; sourceTree = "<group>"; };
 		0145A70A19290E030034A245 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		0145A71219290F2F0034A245 /* CoreDataStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataStack.h; sourceTree = "<group>"; };
 		0145A71319290F2F0034A245 /* CoreDataStack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataStack.m; sourceTree = "<group>"; };
@@ -101,8 +109,6 @@
 		01EEAC74192A44B300491AAF /* Entry+BAMAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Entry+BAMAdditions.m"; sourceTree = "<group>"; };
 		01EEAC76192A455900491AAF /* EntriesCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EntriesCollectionViewController.h; sourceTree = "<group>"; };
 		01EEAC77192A455900491AAF /* EntriesCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EntriesCollectionViewController.m; sourceTree = "<group>"; };
-		01EEAC7D192A525400491AAF /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
-		01EEAC7E192A525400491AAF /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -154,8 +160,6 @@
 		0145A71119290E6D0034A245 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				01EEAC7D192A525400491AAF /* MainViewController.h */,
-				01EEAC7E192A525400491AAF /* MainViewController.m */,
 				013626091928CA0E00723070 /* EntryViewController.h */,
 				0136260A1928CA0E00723070 /* EntryViewController.m */,
 				01EEAC76192A455900491AAF /* EntriesCollectionViewController.h */,
@@ -267,6 +271,12 @@
 			children = (
 				0128806E1963529600FCE7E4 /* ListEntryInteractor.h */,
 				0128806F1963529600FCE7E4 /* ListEntryInteractor.m */,
+				0107A77A197F213800C2205B /* ListEntryPresenter.h */,
+				0107A77B197F213800C2205B /* ListEntryPresenter.m */,
+				0107A777197F1E2500C2205B /* ListEntryWireframe.h */,
+				0107A778197F1E2500C2205B /* ListEntryWireframe.m */,
+				013AC21A1983130B003A6A63 /* ListInteractiveTransition.h */,
+				013AC21B1983130B003A6A63 /* ListInteractiveTransition.m */,
 			);
 			name = List;
 			sourceTree = "<group>";
@@ -421,10 +431,11 @@
 				012880731963556700FCE7E4 /* AddEntryPresenter.m in Sources */,
 				012880761963587500FCE7E4 /* AddEntryWireframe.m in Sources */,
 				0136260E1928CC5700723070 /* InputView.m in Sources */,
+				013AC21C1983130B003A6A63 /* ListInteractiveTransition.m in Sources */,
+				0107A779197F1E2500C2205B /* ListEntryWireframe.m in Sources */,
 				012880701963529600FCE7E4 /* ListEntryInteractor.m in Sources */,
 				0145A71E1929227D0034A245 /* EntryNotifier.m in Sources */,
 				0145A717192914250034A245 /* ServiceManager.m in Sources */,
-				01EEAC7F192A525400491AAF /* MainViewController.m in Sources */,
 				016B60031962092A00316F2B /* EntryDataStore.m in Sources */,
 				016B5FFF1962082D00316F2B /* AddEntryInteractor.m in Sources */,
 				0145A71419290F2F0034A245 /* CoreDataStack.m in Sources */,
@@ -437,6 +448,7 @@
 				014A97C418F8693F002DBA74 /* main.m in Sources */,
 				0128807919635A1800FCE7E4 /* RootWireframe.m in Sources */,
 				01EEAC78192A455900491AAF /* EntriesCollectionViewController.m in Sources */,
+				0107A77C197F213800C2205B /* ListEntryPresenter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
