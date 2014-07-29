@@ -21,7 +21,7 @@ typedef void (^EntryBlock)(Entry* entry);
 
 -(Entry*)findEntryWithKey:(NSString*)key error:(NSError**)pError;
 -(NSArray*)findAllEntriesWithError:(NSError**)pError;
-
+-(NSUInteger)countEntriesWithError:(NSError**)pError;
 -(BOOL)entryWithAddBlock:(EntryBlock)addBlock error:(NSError**)pError;
 -(BOOL)entryWithKey:(NSString*)key updateBlock:(EntryBlock)updateBlock error:(NSError**)pError;
 -(BOOL)deleteEntryWithKey:(NSString*)key error:(NSError**)pError;

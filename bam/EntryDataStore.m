@@ -39,6 +39,17 @@
 
 #pragma mark -
 
+-(NSUInteger)countEntriesWithError:(NSError**)pError
+{
+    NSFetchRequest* request = [[NSFetchRequest alloc] initWithEntityName:@"Entry"];
+    NSError* error = nil;
+    NSUInteger result = [self.coreDataStack.mainContext countForFetchRequest:request error:&error];
+    if (error) {
+        NSLog(@"🔥%@ in %s", error, __PRETTY_FUNCTION__);
+    }
+    return result;
+
+}
 -(NSArray*)findAllEntriesWithError:(NSError**)pError
 {
     NSFetchRequest* request = [[NSFetchRequest alloc] initWithEntityName:@"Entry"];

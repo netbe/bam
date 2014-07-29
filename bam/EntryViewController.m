@@ -130,6 +130,12 @@ NSString * const EntryRepetitionWeek = @"weekly";
 
 #pragma mark - AddEntryView
 
+- (void)updateCount:(NSUInteger)count
+{
+    NSString* title = [NSString stringWithFormat:@"%d entries", count];
+    [self.listButton setTitle:title forState:UIControlStateNormal];
+}
+
 - (void)setKey:(NSString*)key
 {
     self.keyInputView.text = key;

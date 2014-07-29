@@ -34,4 +34,9 @@
         entry.repeatInterval = period;
     } error:pError];
 }
+
+-(NSUInteger)countEntries
+{
+    return [self.dataStore countEntriesWithError:NULL];
+}
 @end

@@ -36,6 +36,8 @@ extern NSString * const EntryRepetitionWeek;
 - (void)focusOnKey;
 - (void)focusOnValue;
 
+- (void)updateCount:(NSUInteger)count;
+
 - (void)showSuccess;
 - (void)showError:(NSError*)error;
 @end

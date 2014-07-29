@@ -34,6 +34,14 @@
     }
 }
 
+
+- (void)updateCount
+{
+    NSUInteger count = [self.interactor countEntries];
+    [self.view updateCount:count];
+}
+
+
 #pragma mark - AddEventHandler
 
 - (void)prepareNewEntry
@@ -45,6 +53,7 @@
     [self.view setKey:nil];
     [self.view setValue:nil];
     [self.view focusOnKey];
+    [self updateCount];
 }
 
 - (void)updateKey:(NSString*)key
@@ -64,6 +73,7 @@
     NSError* error = nil;
     if ([self.interactor addEntryWithKey:self.key value:self.value period:self.repeatInterval error:&error]) {
         [self.view showSuccess];
+        [self updateCount];
     }else{
         // might want to *dumbify* error before presenting to user
         [self.view showError:error];
