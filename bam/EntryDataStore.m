@@ -39,6 +39,17 @@
 
 #pragma mark -
 
+-(NSArray*)findAllEntriesWithError:(NSError**)pError
+{
+    NSFetchRequest* request = [[NSFetchRequest alloc] initWithEntityName:@"Entry"];
+    NSError* error = nil;
+    NSArray* results = [self.coreDataStack.mainContext executeFetchRequest:request error:&error];
+    if (error) {
+        NSLog(@"🔥%@ in %s", error, __PRETTY_FUNCTION__);
+    }
+    return results;
+}
+
 -(Entry*)findEntryWithKey:(NSString*)key error:(NSError**)pError
 {
     NSFetchRequest* request = [[NSFetchRequest alloc] initWithEntityName:@"Entry"];

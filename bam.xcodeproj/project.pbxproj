@@ -36,6 +36,7 @@
 		014A97DD18F86940002DBA74 /* bamTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 014A97DC18F86940002DBA74 /* bamTests.m */; };
 		016B5FFF1962082D00316F2B /* AddEntryInteractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 016B5FFE1962082D00316F2B /* AddEntryInteractor.m */; };
 		016B60031962092A00316F2B /* EntryDataStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 016B60021962092A00316F2B /* EntryDataStore.m */; };
+		01B40A6C19883D1800D10225 /* PlainEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 01B40A6B19883D1800D10225 /* PlainEntry.m */; };
 		01DD807819353B4C0027A35A /* EntryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 01DD807719353B4C0027A35A /* EntryCell.m */; };
 		01EEAC75192A44B300491AAF /* Entry+BAMAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 01EEAC74192A44B300491AAF /* Entry+BAMAdditions.m */; };
 		01EEAC78192A455900491AAF /* EntriesCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 01EEAC77192A455900491AAF /* EntriesCollectionViewController.m */; };
@@ -103,6 +104,8 @@
 		016B60011962092A00316F2B /* EntryDataStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EntryDataStore.h; sourceTree = "<group>"; };
 		016B60021962092A00316F2B /* EntryDataStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EntryDataStore.m; sourceTree = "<group>"; };
 		0187942119774219007E93F7 /* Model_ 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model_ 3.xcdatamodel"; sourceTree = "<group>"; };
+		01B40A6A19883D1800D10225 /* PlainEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlainEntry.h; sourceTree = "<group>"; };
+		01B40A6B19883D1800D10225 /* PlainEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlainEntry.m; sourceTree = "<group>"; };
 		01DD807619353B4C0027A35A /* EntryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EntryCell.h; sourceTree = "<group>"; };
 		01DD807719353B4C0027A35A /* EntryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EntryCell.m; sourceTree = "<group>"; };
 		01EEAC73192A44B300491AAF /* Entry+BAMAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Entry+BAMAdditions.h"; sourceTree = "<group>"; };
@@ -247,6 +250,7 @@
 		0159164019523C09009884C9 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				01B40A6919883CFC00D10225 /* Model */,
 				0145A71119290E6D0034A245 /* ViewControllers */,
 				0145A71019290E4F0034A245 /* Views */,
 				018794221977431F007E93F7 /* Routing */,
@@ -323,6 +327,15 @@
 				0128807819635A1800FCE7E4 /* RootWireframe.m */,
 			);
 			name = Routing;
+			sourceTree = "<group>";
+		};
+		01B40A6919883CFC00D10225 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				01B40A6A19883D1800D10225 /* PlainEntry.h */,
+				01B40A6B19883D1800D10225 /* PlainEntry.m */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 		01EEAC79192A45F700491AAF /* CoreData */ = {
@@ -446,6 +459,7 @@
 				0145A71819291A700034A245 /* Model.xcdatamodeld in Sources */,
 				01EEAC75192A44B300491AAF /* Entry+BAMAdditions.m in Sources */,
 				0145A71B19291EEF0034A245 /* Entry.m in Sources */,
+				01B40A6C19883D1800D10225 /* PlainEntry.m in Sources */,
 				0128806D1963523100FCE7E4 /* EditEntryInteractor.m in Sources */,
 				01DD807819353B4C0027A35A /* EntryCell.m in Sources */,
 				0136260B1928CA0E00723070 /* EntryViewController.m in Sources */,

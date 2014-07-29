@@ -37,7 +37,7 @@
     self.presenter.interactor = self.interactor;
     self.presenter.view = entryViewController;
     self.presenter.listWireframe = [[ListEntryWireframe alloc] init];
-
+    [self.presenter.listWireframe setDataManager:dataStore];
     
     entryViewController.eventHandler = self.presenter;
     self.window.rootViewController = entryViewController;

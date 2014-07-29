@@ -12,6 +12,6 @@
 
 @interface ListEntryInteractor : NSObject
 -(id)initWithDataManager:(EntryDataStore*)dataStore;
--(NSArray*)findEntries;
+-(NSArray*/*PlainEntry*/)findEntries;
 
 @end

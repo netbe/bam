@@ -8,15 +8,35 @@
 
 #import "ListEntryInteractor.h"
 
+#import "EntryDataStore.h"
+#import "Entry.h"
+#import "PlainEntry.h"
+
+@interface ListEntryInteractor ()
+@property(nonatomic, strong)EntryDataStore* dataStore;
+@end
+
 @implementation ListEntryInteractor
 
 -(id)initWithDataManager:(EntryDataStore*)dataStore
 {
-    return nil;
+    self = [super init];
+    if (self) {
+        self.dataStore = dataStore;
+    }
+    return self;
 }
 
 -(NSArray*)findEntries
 {
-    return nil;
+    NSMutableArray* plainEntries = [[NSMutableArray alloc] init];
+    NSArray* entries = [self.dataStore findAllEntriesWithError:NULL];
+    for (Entry* entry in entries) {
+        PlainEntry * plainEntry = [[PlainEntry alloc] init];
+        plainEntry.key = entry.key;
+        plainEntry.value = entry.value;
+        [plainEntries addObject:plainEntry];
+    }
+    return plainEntries;
 }
 @end

@@ -10,7 +10,7 @@
 
 @class ListEntryInteractor;
 @class ListEntryPresenter;
-
+@class EntryDataStore;
 
 @interface ListEntryWireframe : NSObject<UIViewControllerTransitioningDelegate, UIViewControllerAnimatedTransitioning>
 @property(nonatomic, strong)ListEntryInteractor* interactor;
@@ -20,4 +20,5 @@
 
 - (void)presentListFromViewController:(UIViewController*)viewController interactive:(BOOL)interactive;
 - (void)dismissListInteractive:(BOOL)interactive;
+- (void)setDataManager:(EntryDataStore*)entryDataStore;
 @end

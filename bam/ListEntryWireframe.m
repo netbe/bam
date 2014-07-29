@@ -38,6 +38,12 @@
     return self;
 }
 
+- (void)setDataManager:(EntryDataStore*)entryDataStore
+{
+    self.interactor = [[ListEntryInteractor alloc] initWithDataManager:entryDataStore];
+    self.presenter.listInteractor = self.interactor;
+}
+
 - (void)presentListFromViewController:(UIViewController*)viewController interactive:(BOOL)interactive
 {
     NSAssert(self.listEntriesViewController, @"listView must be present");
@@ -72,7 +78,7 @@
 
 - (NSTimeInterval)transitionDuration:(id <UIViewControllerContextTransitioning>)transitionContext
 {
-    return 2.0;//0.7;
+    return 0.7;
 }
 
 - (void)animateTransition:(id <UIViewControllerContextTransitioning>)transitionContext
@@ -89,10 +95,6 @@
 
 }
 
-- (void)animationEnded:(BOOL) transitionCompleted
-{
-    
-}
 #pragma mark -
 
 - (void)fallingTransition:(id <UIViewControllerContextTransitioning>)transitionContext reverse:(BOOL)reverse

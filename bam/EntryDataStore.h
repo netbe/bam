@@ -20,6 +20,7 @@ typedef void (^EntryBlock)(Entry* entry);
 -(instancetype)initWithCoreDataStack:(CoreDataStack*)coreDataStack;
 
 -(Entry*)findEntryWithKey:(NSString*)key error:(NSError**)pError;
+-(NSArray*)findAllEntriesWithError:(NSError**)pError;
 
 -(BOOL)entryWithAddBlock:(EntryBlock)addBlock error:(NSError**)pError;
 -(BOOL)entryWithKey:(NSString*)key updateBlock:(EntryBlock)updateBlock error:(NSError**)pError;

@@ -6,15 +6,14 @@
 //  Copyright (c) 2014 François Benaiteau. All rights reserved.
 //
 #import "EntriesCollectionViewController.h"
-
-@import CoreData;
-#import "ServiceManager.h"
 #import "EntryCell.h"
 
-static NSString* const kCellIdentifier = @"com.bam.cell";
+static NSString* const kCellEntryIdentifier = @"com.bam.cell.entry";
+static NSString* const kCellAddIdentifier = @"com.bam.cell.add";
 
-@interface EntriesCollectionViewController ()<NSFetchedResultsControllerDelegate>
-@property(nonatomic, strong)NSFetchedResultsController* resultsController;
+@interface EntriesCollectionViewController ()
+@property(nonatomic, strong)NSArray* entries;
+@property(nonatomic, assign)BOOL displayAddButton;
 @property(nonatomic, strong)UIButton* addModeButton;
 @end
 
@@ -26,7 +25,7 @@ static NSString* const kCellIdentifier = @"com.bam.cell";
     [flowLayout setItemSize:CGSizeMake(145, 100)];
     [flowLayout setMinimumInteritemSpacing:5];
     [flowLayout setMinimumLineSpacing:5];
-    flowLayout.sectionInset = UIEdgeInsetsMake(5,5,5,5);
+    flowLayout.sectionInset = UIEdgeInsetsMake(20,5,0,5);
     self = [super initWithCollectionViewLayout:flowLayout];
     if (self) {
         
@@ -37,11 +36,12 @@ static NSString* const kCellIdentifier = @"com.bam.cell";
 - (void)viewDidLoad
 {    
     [super viewDidLoad];
-    self.collectionView.backgroundColor = [UIColor whiteColor];
+    self.collectionView.backgroundColor = [UIColor greenColor];
     
     NSAssert(self.eventHandler, @"must have a eventHandler");
     [self.eventHandler addGestureToView:self.view];
-    [self.collectionView registerClass:[EntryCell class] forCellWithReuseIdentifier:kCellIdentifier];
+    [self.collectionView registerClass:[EntryCell class] forCellWithReuseIdentifier:kCellEntryIdentifier];
+    [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:kCellAddIdentifier];
     
     self.addModeButton = [[UIButton alloc] init];
     [self.view addSubview:self.addModeButton];
@@ -55,8 +55,35 @@ static NSString* const kCellIdentifier = @"com.bam.cell";
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[_addModeButton(44)]|"
                                                                       options:0 metrics:nil
                                                                         views:NSDictionaryOfVariableBindings(_addModeButton)]];
-
 }
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.eventHandler updateView];
+}
+
+#pragma mark - ListView
+
+- (void)displayAddEntryButton:(BOOL)display
+{
+    self.displayAddButton = display;
+    self.addModeButton.hidden = display;    
+}
+
+- (void)setEntries:(NSArray*)entries
+{
+    _entries = entries;
+    [self.collectionView reloadData];
+}
+
+- (void)configureEntryCell:(EntryCell*)cell atIndexPath:(NSIndexPath*)indexPath
+{
+    PlainEntry* entry = self.entries[indexPath.row];
+    cell.keyLabel.text = entry.key;
+    cell.valueLabel.text = entry.value;
+}
+
 
 - (void)addModeButtonTapped:(id)sender
 {
@@ -67,13 +94,40 @@ static NSString* const kCellIdentifier = @"com.bam.cell";
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return 0;//self.resultsController.fetchedObjects.count;
+    NSUInteger count = self.displayAddButton ? 1 : 0;
+    return self.entries.count + count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    EntryCell* cell = [collectionView dequeueReusableCellWithReuseIdentifier:kCellIdentifier forIndexPath:indexPath];
+    UICollectionViewCell* cell;
+    if (indexPath.row == self.entries.count) {
+        cell = [collectionView dequeueReusableCellWithReuseIdentifier:kCellAddIdentifier forIndexPath:indexPath];
+        // add Button
+        UILabel* addEntry = [[UILabel alloc] init];
+        addEntry.text = @"+";
+        addEntry.font = [UIFont systemFontOfSize:20];
+        addEntry.textColor = [UIColor blackColor];
+        [addEntry sizeToFit];
+        
+        [cell.contentView addSubview:addEntry];
+        addEntry.center = cell.contentView.center;
+    }else{
+        cell = [collectionView dequeueReusableCellWithReuseIdentifier:kCellEntryIdentifier forIndexPath:indexPath];
+        [self configureEntryCell:(EntryCell*)cell atIndexPath:indexPath];
+    }   
+    
     return cell;
+}
+
+#pragma mark - UICollectionViewDelegate
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.row == self.entries.count) {
+        // add Button
+        [self.eventHandler dismissList];
+    }
 }
 
 @end

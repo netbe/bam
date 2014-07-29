@@ -9,6 +9,7 @@
 #import "ListEntryPresenter.h"
 
 #import "ListEntryWireframe.h"
+#import "ListEntryInteractor.h"
 #import "ListInteractiveTransition.h"
 
 @implementation ListEntryPresenter
@@ -28,4 +29,12 @@
 {
     [self.listWireframe dismissListInteractive:NO];
 }
+
+- (void)updateView
+{
+    NSArray* entries = [self.listInteractor findEntries];
+    [self.listView displayAddEntryButton:entries.count == 0];
+    [self.listView setEntries:entries];
+}
+
 @end
