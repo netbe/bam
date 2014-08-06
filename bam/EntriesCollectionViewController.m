@@ -22,8 +22,8 @@ static NSString* const kCellAddIdentifier = @"com.bam.cell.add";
 - (id)init
 {
     UICollectionViewFlowLayout* flowLayout = [[UICollectionViewFlowLayout alloc] init];
-    [flowLayout setItemSize:CGSizeMake(145, 100)];
-    [flowLayout setMinimumInteritemSpacing:5];
+    [flowLayout setItemSize:CGSizeMake(310, 100)];
+    [flowLayout setMinimumInteritemSpacing:0];
     [flowLayout setMinimumLineSpacing:5];
     flowLayout.sectionInset = UIEdgeInsetsMake(20,5,0,5);
     self = [super initWithCollectionViewLayout:flowLayout];
@@ -36,13 +36,13 @@ static NSString* const kCellAddIdentifier = @"com.bam.cell.add";
 - (void)viewDidLoad
 {    
     [super viewDidLoad];
-    self.collectionView.backgroundColor = [UIColor greenColor];
+    self.collectionView.backgroundColor = [UIColor whiteColor];
     
     NSAssert(self.eventHandler, @"must have a eventHandler");
     [self.eventHandler addGestureToView:self.view];
     [self.collectionView registerClass:[EntryCell class] forCellWithReuseIdentifier:kCellEntryIdentifier];
     [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:kCellAddIdentifier];
-    
+
     self.addModeButton = [[UIButton alloc] init];
     [self.view addSubview:self.addModeButton];
     [self.addModeButton setTitle:@"+" forState:UIControlStateNormal];
@@ -80,7 +80,7 @@ static NSString* const kCellAddIdentifier = @"com.bam.cell.add";
 - (void)configureEntryCell:(EntryCell*)cell atIndexPath:(NSIndexPath*)indexPath
 {
     PlainEntry* entry = self.entries[indexPath.row];
-    cell.keyLabel.text = entry.key;
+    cell.keyLabel.text = entry.key.capitalizedString;
     cell.valueLabel.text = entry.value;
 }
 
@@ -127,6 +127,8 @@ static NSString* const kCellAddIdentifier = @"com.bam.cell.add";
     if (indexPath.row == self.entries.count) {
         // add Button
         [self.eventHandler dismissList];
+    }else{
+        [self.eventHandler selectEntry:self.entries[indexPath.row]];
     }
 }
 

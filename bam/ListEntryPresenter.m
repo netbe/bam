@@ -37,4 +37,8 @@
     [self.listView setEntries:entries];
 }
 
+- (void)selectEntry:(PlainEntry*)entry;
+{
+    // show edit
+}
 @end

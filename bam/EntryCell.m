@@ -16,22 +16,26 @@
     if (self) {
         // Initialization code
         self.layer.cornerRadius = 5;
-        
+        self.layer.borderColor = self.tintColor.CGColor;
+        self.layer.borderWidth = 1;
         self.backgroundColor = [UIColor whiteColor];
         
         self.keyLabel = [[UILabel alloc] init];
+        self.keyLabel.font =  [UIFont systemFontOfSize:[UIFont preferredFontForTextStyle:UIFontTextStyleBody].pointSize];
         [self.contentView addSubview:self.keyLabel];
         
         self.valueLabel = [[UILabel alloc] init];
+        self.valueLabel.font =  [UIFont italicSystemFontOfSize:[UIFont preferredFontForTextStyle:UIFontTextStyleBody].pointSize];
+         self.valueLabel.font =  [UIFont italicSystemFontOfSize:[UIFont preferredFontForTextStyle:UIFontTextStyleBody].pointSize];
         [self.contentView addSubview:self.valueLabel];
         
         NSDictionary* views = NSDictionaryOfVariableBindings(_valueLabel, _keyLabel);
         for (UIView* view in views.allValues) {
             view.translatesAutoresizingMaskIntoConstraints = NO;
             [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-(5)-[view]-(5)-|"
-                                                                         options:0
-                                                                         metrics:nil
-                                                                           views:NSDictionaryOfVariableBindings(view)]];
+                                                                                     options:0
+                                                                                     metrics:nil
+                                                                                       views:NSDictionaryOfVariableBindings(view)]];
             
         }
         NSArray* constraints = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-[_keyLabel]-[_valueLabel]-|"
@@ -39,18 +43,18 @@
                                                                        metrics:nil
                                                                          views:views];
         [self.contentView addConstraints:constraints];
-
+        
     }
     return self;
 }
 
 /*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
-{
-    // Drawing code
-}
-*/
+ // Only override drawRect: if you perform custom drawing.
+ // An empty implementation adversely affects performance during animation.
+ - (void)drawRect:(CGRect)rect
+ {
+ // Drawing code
+ }
+ */
 
 @end

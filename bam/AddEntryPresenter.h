@@ -17,30 +17,7 @@ extern NSString * const EntryRepetitionWeek;
 
 @class AddEntryInteractor;
 @class ListEntryWireframe;
-@protocol AddEntryEventHandler <NSObject>
-- (void)prepareNewEntry;
-- (void)updateKey:(NSString*)key;
-- (void)updateValue:(NSString*)value;
-- (void)save;
-- (void)presentListInterface;
-@end
-
-@protocol AddEntryView <NSObject>
-- (NSString*)selectedReminderValue;
-
-- (void)setKey:(NSString*)key;
-- (void)setValue:(NSString*)value;
-
-- (void)selectReminderValueAtIndex:(NSUInteger)index;
-
-- (void)focusOnKey;
-- (void)focusOnValue;
-
-- (void)updateCount:(NSUInteger)count;
-
-- (void)showSuccess;
-- (void)showError:(NSError*)error;
-@end
+#import "EntryIO.h"
 
 @interface AddEntryPresenter : NSObject<AddEntryEventHandler>
 

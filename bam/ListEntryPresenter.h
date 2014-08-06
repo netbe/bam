@@ -13,6 +13,7 @@
 - (void)addGestureToView:(UIView*)view;
 - (void)dismissList;
 - (void)updateView;
+- (void)selectEntry:(PlainEntry*)entry;
 
 @end
 

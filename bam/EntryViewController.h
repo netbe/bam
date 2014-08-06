@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@class ServiceManager;
 #import "AddEntryPresenter.h"
 
 @interface EntryViewController : UIViewController<AddEntryView>

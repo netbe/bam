@@ -8,7 +8,6 @@
 
 #import "AppDelegate.h"
 
-#import "ServiceManager.h"
 #import "RootWireframe.h"
 
 @implementation AppDelegate

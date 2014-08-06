@@ -28,8 +28,8 @@
         _presenter = [[ListEntryPresenter alloc] init];
         
         _listEntriesViewController = [[EntriesCollectionViewController alloc] init];
-        _listEntriesViewController.modalPresentationStyle = UIModalPresentationCustom;
-        _listEntriesViewController.transitioningDelegate = self;
+//        _listEntriesViewController.modalPresentationStyle = UIModalPresentationCustom;
+//        _listEntriesViewController.transitioningDelegate = self;
         _listEntriesViewController.eventHandler = _presenter;
         
         _presenter.listView = _listEntriesViewController;
@@ -123,10 +123,12 @@
     
     CGRect finalFromFrame = reverse ? CGRectOffset(initialFromFrame, 0, - CGRectGetHeight(containerView.bounds)) : CGRectOffset(initialFromFrame, 0, CGRectGetHeight(containerView.bounds));    
     CGRect finalToFrame = initialFromFrame;
-    
+
     [UIView animateWithDuration:[self transitionDuration:transitionContext]
-                          delay:0 usingSpringWithDamping:0.7
-          initialSpringVelocity:0.2 options:UIViewAnimationOptionCurveEaseIn 
+                          delay:0 
+//         usingSpringWithDamping:0.7
+//          initialSpringVelocity:0.2 
+                        options:UIViewAnimationOptionCurveEaseIn 
                      animations:^{
                          to.view.frame = finalToFrame;
                          from.view.frame = finalFromFrame;
