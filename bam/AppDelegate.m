@@ -11,10 +11,18 @@
 #import "RootWireframe.h"
 #import "EntryNotifier.h"
 
+#ifdef COCOAPODS_POD_AVAILABLE_TestFlightSDK
+#import "TestFlight.h"
+#endif
+
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+#ifdef COCOAPODS_POD_AVAILABLE_TestFlightSDK
+    // start of your application:didFinishLaunchingWithOptions
+    [TestFlight takeOff:@"b483db3f-2cc5-470a-ac9b-f2f437f97112"];
+#endif
     if (launchOptions && launchOptions[UIApplicationLaunchOptionsLocalNotificationKey]) {
         
     }
