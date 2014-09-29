@@ -8,7 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
+
 @interface EntryNotifier : NSObject
 @property(nonatomic, assign)NSUInteger defaultTime;
-- (void)scheduleNotificationWithText:(NSString*)text repeatInterval:(NSCalendarUnit)repeatInterval;
+- (void)scheduleNotificationWithText:(NSString*)text intervalInSeconds:(NSTimeInterval)seconds repeatInterval:(NSCalendarUnit)repeatInterval;
+
+
 @end

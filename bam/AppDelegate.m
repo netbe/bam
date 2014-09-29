@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 
 #import "RootWireframe.h"
+#import "EntryNotifier.h"
 
 @implementation AppDelegate
 
@@ -19,12 +20,7 @@
     }
     self.rootWireframe = [[RootWireframe alloc] init];
     [self.rootWireframe setup];
-
-//    [[UIApplication sharedApplication] cancelAllLocalNotifications];    
-//    MainViewController* entryViewController = MainViewController.new;
-//    entryViewController.serviceManager = ServiceManager.new;
-//    [entryViewController.serviceManager setupCoreData];
-//    
+    
     return YES;
 }
 
@@ -32,7 +28,8 @@
 {
     // notification received when application is visible
     // for now just ignore!
-//    [[UIApplication sharedApplication] presentLocalNotificationNow:notification];
+//    [NSNotificationCenter defaultCenter] postNotificationName:<#(NSString *)#> object:<#(id)#>
+    //    [[UIApplication sharedApplication] presentLocalNotificationNow:notification];
 
 //    NSDictionary *userInfo = notification.userInfo;
 //    NSURL *siteURL = [NSURL URLWithString:[userInfo objectForKey:@"SiteURLKey"]];

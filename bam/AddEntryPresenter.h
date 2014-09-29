@@ -17,6 +17,7 @@ extern NSString * const EntryRepetitionWeek;
 
 @class AddEntryInteractor;
 @class ListEntryWireframe;
+@class EntryNotifier;
 #import "EntryIO.h"
 
 @interface AddEntryPresenter : NSObject<AddEntryEventHandler>
@@ -24,6 +25,8 @@ extern NSString * const EntryRepetitionWeek;
 @property(nonatomic, copy)NSString* key;
 @property(nonatomic, copy)NSString* value;
 @property(nonatomic, strong)NSNumber* repeatInterval;
+
+@property(nonatomic, strong)EntryNotifier* notifier;
 
 @property(nonatomic, strong)AddEntryInteractor* interactor;
 @property(nonatomic, strong)id<AddEntryView> view;

@@ -10,29 +10,29 @@
 	<string>bam</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>36A9F882-79C9-4A08-86B7-8A0F40B2A9C3</key>
+		<key>11DB73B6E4E6D37DC870D7CC1900AA4843D99A19</key>
 		<string>ssh://bitbucket.org/netbe/bam.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>bam.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>36A9F882-79C9-4A08-86B7-8A0F40B2A9C3</key>
+		<key>11DB73B6E4E6D37DC870D7CC1900AA4843D99A19</key>
 		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>ssh://bitbucket.org/netbe/bam.git</string>
 	<key>IDESourceControlProjectVersion</key>
-	<integer>110</integer>
+	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>36A9F882-79C9-4A08-86B7-8A0F40B2A9C3</string>
+	<string>11DB73B6E4E6D37DC870D7CC1900AA4843D99A19</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>36A9F882-79C9-4A08-86B7-8A0F40B2A9C3</string>
+			<string>11DB73B6E4E6D37DC870D7CC1900AA4843D99A19</string>
 			<key>IDESourceControlWCCName</key>
 			<string>bam</string>
 		</dict>

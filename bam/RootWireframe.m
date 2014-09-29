@@ -14,6 +14,7 @@
 
 #import "ListEntryWireframe.h"
 #import "EntryDataStore.h"
+#import "EntryNotifier.h"
 
 @implementation RootWireframe
 
@@ -29,7 +30,7 @@
 - (void)setup
 {
     EntryDataStore* dataStore = [[EntryDataStore alloc] init];
-    
+    EntryNotifier* notifier = [[EntryNotifier alloc] init];
     EntryViewController* entryViewController = [[EntryViewController alloc] init];
     
     self.interactor = [[AddEntryInteractor alloc] initWithDataManager:dataStore];
@@ -38,6 +39,8 @@
     self.presenter.view = entryViewController;
     self.presenter.listWireframe = [[ListEntryWireframe alloc] init];
     [self.presenter.listWireframe setDataManager:dataStore];
+    
+    self.presenter.notifier = notifier;
     
     entryViewController.eventHandler = self.presenter;
     self.window.rootViewController = entryViewController;

@@ -18,7 +18,6 @@
 		0136260E1928CC5700723070 /* InputView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0136260D1928CC5700723070 /* InputView.m */; };
 		013AC21C1983130B003A6A63 /* ListInteractiveTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 013AC21B1983130B003A6A63 /* ListInteractiveTransition.m */; };
 		0145A71419290F2F0034A245 /* CoreDataStack.m in Sources */ = {isa = PBXBuildFile; fileRef = 0145A71319290F2F0034A245 /* CoreDataStack.m */; };
-		0145A717192914250034A245 /* ServiceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0145A716192914250034A245 /* ServiceManager.m */; };
 		0145A71819291A700034A245 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0145A70919290E030034A245 /* Model.xcdatamodeld */; };
 		0145A71B19291EEF0034A245 /* Entry.m in Sources */ = {isa = PBXBuildFile; fileRef = 0145A71A19291EEF0034A245 /* Entry.m */; };
 		0145A71E1929227D0034A245 /* EntryNotifier.m in Sources */ = {isa = PBXBuildFile; fileRef = 0145A71D1929227D0034A245 /* EntryNotifier.m */; };
@@ -78,8 +77,6 @@
 		0145A70A19290E030034A245 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		0145A71219290F2F0034A245 /* CoreDataStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataStack.h; sourceTree = "<group>"; };
 		0145A71319290F2F0034A245 /* CoreDataStack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataStack.m; sourceTree = "<group>"; };
-		0145A715192914250034A245 /* ServiceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServiceManager.h; sourceTree = "<group>"; };
-		0145A716192914250034A245 /* ServiceManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServiceManager.m; sourceTree = "<group>"; };
 		0145A71919291EEF0034A245 /* Entry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Entry.h; sourceTree = "<group>"; };
 		0145A71A19291EEF0034A245 /* Entry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Entry.m; sourceTree = "<group>"; };
 		0145A71C1929227D0034A245 /* EntryNotifier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EntryNotifier.h; sourceTree = "<group>"; };
@@ -119,7 +116,6 @@
 		01EEAC74192A44B300491AAF /* Entry+BAMAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Entry+BAMAdditions.m"; sourceTree = "<group>"; };
 		01EEAC76192A455900491AAF /* EntriesCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EntriesCollectionViewController.h; sourceTree = "<group>"; };
 		01EEAC77192A455900491AAF /* EntriesCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EntriesCollectionViewController.m; sourceTree = "<group>"; };
-		DF0BEFDA1B744AE48E9B0724 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		F83EFD92C978404BB43B3E49 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -187,7 +183,6 @@
 				014A97D618F86940002DBA74 /* bamTests */,
 				014A97B618F8693F002DBA74 /* Frameworks */,
 				014A97B518F8693F002DBA74 /* Products */,
-				DF0BEFDA1B744AE48E9B0724 /* Pods.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -265,8 +260,6 @@
 				01EEAC79192A45F700491AAF /* CoreData */,
 				0145A71C1929227D0034A245 /* EntryNotifier.h */,
 				0145A71D1929227D0034A245 /* EntryNotifier.m */,
-				0145A715192914250034A245 /* ServiceManager.h */,
-				0145A716192914250034A245 /* ServiceManager.m */,
 			);
 			name = Common;
 			sourceTree = "<group>";
@@ -464,7 +457,6 @@
 				0107A779197F1E2500C2205B /* ListEntryWireframe.m in Sources */,
 				012880701963529600FCE7E4 /* ListEntryInteractor.m in Sources */,
 				0145A71E1929227D0034A245 /* EntryNotifier.m in Sources */,
-				0145A717192914250034A245 /* ServiceManager.m in Sources */,
 				016B60031962092A00316F2B /* EntryDataStore.m in Sources */,
 				016B5FFF1962082D00316F2B /* AddEntryInteractor.m in Sources */,
 				0145A71419290F2F0034A245 /* CoreDataStack.m in Sources */,

@@ -15,18 +15,24 @@
     self = [super init];
     if (self) {
         self.defaultTime = 5;
+//        didReceiveLocalNotification
+//        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationWillResignActive:) name:UIApplicationWillResignActiveNotification
+//                                                   object:nil];
+
     }
     return self;
 }
 
-- (void)scheduleNotificationWithText:(NSString*)text repeatInterval:(NSCalendarUnit)repeatInterval
+- (void)scheduleNotificationWithText:(NSString*)text intervalInSeconds:(NSTimeInterval)seconds repeatInterval:(NSCalendarUnit)repeatInterval
 {
     NSLog(@"Schedule %@", text);
     UILocalNotification* notification = [[UILocalNotification alloc] init];
-    notification.fireDate = [NSDate date];
     notification.alertBody = text;
-    notification.alertAction = NO;
+    notification.alertAction = @"Check Value";
+    notification.fireDate = [NSDate dateWithTimeIntervalSinceNow:seconds];
     notification.repeatInterval = repeatInterval;
     [[UIApplication sharedApplication] scheduleLocalNotification:notification];
 }
+
+
 @end

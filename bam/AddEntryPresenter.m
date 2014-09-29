@@ -11,6 +11,8 @@
 #import "AddEntryInteractor.h"
 #import "ListEntryWireframe.h"
 
+#import "EntryNotifier.h"
+
 @interface AddEntryPresenter ()
 
 @end
@@ -34,7 +36,22 @@
     }
 }
 
-
+- (NSCalendarUnit)repeatIntervalForReminderName:(NSString*)name
+{
+    if ([name isEqualToString:EntryRepetitionSecond]) {
+        return NSSecondCalendarUnit;
+    }else if ([name isEqualToString:EntryRepetitionMinute]) {
+        return NSMinuteCalendarUnit;
+    }else if ([name isEqualToString:EntryRepetitionHour]) {
+        return NSHourCalendarUnit;
+    }else if ([name isEqualToString:EntryRepetitionDay]) {
+        return NSDayCalendarUnit; 
+    }else if ([name isEqualToString:EntryRepetitionWeek]) {
+        return NSWeekCalendarUnit; 
+    }else{
+        return 0;// EntryRepetitionNever and .*
+    }
+}
 - (void)updateCount
 {
     NSUInteger count = [self.interactor countEntries];
@@ -69,11 +86,16 @@
 
 - (void)save
 {
-    self.repeatInterval = @([self valueForReminderName:self.view.selectedReminderValue]);
+//    self.repeatInterval = @([self valueForReminderName:self.view.selectedReminderValue]);
+    self.repeatInterval = @([self valueForReminderName:EntryRepetitionMinute]);
+    NSCalendarUnit unit = [self repeatIntervalForReminderName:EntryRepetitionMinute];
     NSError* error = nil;
     if ([self.interactor addEntryWithKey:self.key value:self.value period:self.repeatInterval error:&error]) {
         [self.view showSuccess];
         [self updateCount];
+        [self.notifier scheduleNotificationWithText:self.key 
+                                  intervalInSeconds:self.repeatInterval.doubleValue
+                                     repeatInterval:unit];
     }else{
         // might want to *dumbify* error before presenting to user
         [self.view showError:error];

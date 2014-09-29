@@ -115,6 +115,7 @@ NSString * const EntryRepetitionWeek = @"weekly";
     
     UITapGestureRecognizer* gesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleGesture)];
     [self.view addGestureRecognizer:gesture];
+    self.reminderControl.hidden = YES;
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -132,7 +133,7 @@ NSString * const EntryRepetitionWeek = @"weekly";
 
 - (void)updateCount:(NSUInteger)count
 {
-    NSString* title = [NSString stringWithFormat:@"%d entries", count];
+    NSString* title = [NSString stringWithFormat:@"%ld entries", count];
     [self.listButton setTitle:title forState:UIControlStateNormal];
 }
 
