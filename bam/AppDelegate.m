@@ -34,14 +34,24 @@
 
 -(void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification
 {
+    if ([UIApplication sharedApplication].applicationState == UIApplicationStateActive) {
+        return;// ignore notifications now, could increment a badge in future
+    }
+    
     // notification received when application is visible
     // for now just ignore!
-//    [NSNotificationCenter defaultCenter] postNotificationName:<#(NSString *)#> object:<#(id)#>
+    //    [NSNotificationCenter defaultCenter] postNotificationName:<#(NSString *)#> object:<#(id)#>
     //    [[UIApplication sharedApplication] presentLocalNotificationNow:notification];
-
-//    NSDictionary *userInfo = notification.userInfo;
-//    NSURL *siteURL = [NSURL URLWithString:[userInfo objectForKey:@"SiteURLKey"]];
-//    [[UIApplication sharedApplication] openURL:siteURL];
+    
+    //    NSDictionary *userInfo = notification.userInfo;
+    //    NSURL *siteURL = [NSURL URLWithString:[userInfo objectForKey:@"SiteURLKey"]];
+    //    [[UIApplication sharedApplication] openURL:siteURL];
 }
 
+- (void)application:(UIApplication *)application didRegisterUserNotificationSettings:(UIUserNotificationSettings *)notificationSettings
+{
+    if (notificationSettings != UIUserNotificationTypeNone) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:EntryNotifierNotificationAgreement object:self];
+    }
+}
 @end

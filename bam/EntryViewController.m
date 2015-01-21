@@ -219,11 +219,12 @@ NSString * const EntryRepetitionWeek = @"weekly";
 
 #pragma mark - UIAlertViewDelegate
 
-- (void)alertView:(UIAlertView *)alertView willDismissWithButtonIndex:(NSInteger)buttonIndex
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
     if ([alertView.title hasPrefix:@"🔥"]) {
         [self.valueInputView becomeFirstResponder];
     }else{
+        [self.eventHandler scheduleNotification];
         [self.eventHandler prepareNewEntry];
     }
 }

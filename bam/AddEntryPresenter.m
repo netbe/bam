@@ -13,7 +13,7 @@
 
 #import "EntryNotifier.h"
 
-@interface AddEntryPresenter ()
+@interface AddEntryPresenter ()<UIAlertViewDelegate>
 
 @end
 
@@ -86,24 +86,56 @@
 
 - (void)save
 {
-//    self.repeatInterval = @([self valueForReminderName:self.view.selectedReminderValue]);
-    self.repeatInterval = @([self valueForReminderName:EntryRepetitionMinute]);
-    NSCalendarUnit unit = [self repeatIntervalForReminderName:EntryRepetitionMinute];
+    NSCalendarUnit unit = [self repeatIntervalForReminderName:EntryRepetitionSecond];
+    //    self.repeatInterval = @([self valueForReminderName:self.view.selectedReminderValue]);
+    self.repeatInterval = @([self valueForReminderName:EntryRepetitionSecond]);
     NSError* error = nil;
     if ([self.interactor addEntryWithKey:self.key value:self.value period:self.repeatInterval error:&error]) {
         [self.view showSuccess];
         [self updateCount];
-        [self.notifier scheduleNotificationWithText:self.key 
-                                  intervalInSeconds:self.repeatInterval.doubleValue
-                                     repeatInterval:unit];
     }else{
         // might want to *dumbify* error before presenting to user
         [self.view showError:error];
     }
 }
 
+- (void)showPreAuthorizationDialog
+{
+    [[[UIAlertView alloc] initWithTitle:@"BAM" message:@"Do you want to use notifications to remind you entries?" delegate:self cancelButtonTitle:@"No, thanks" otherButtonTitles:@"Sure!", nil] show];
+}
+
+- (void)scheduleNotification
+{
+    if ([self.notifier shouldAskNotificationPermissions]) {
+        [self showPreAuthorizationDialog];
+    }else{
+        NSCalendarUnit unit = [self repeatIntervalForReminderName:EntryRepetitionSecond];
+        [self.notifier scheduleNotificationWithText:[self definitionTextForNotification] 
+                                  intervalInSeconds:self.repeatInterval.doubleValue
+                                     repeatInterval:unit];
+    }
+}
+
+- (NSString*)definitionTextForNotification
+{
+    return [NSString stringWithFormat:@"'%@' = '%@'", self.key, self.value];
+}
+
+
 - (void)presentListInterface
 {
     [self.listWireframe presentListFromViewController:(UIViewController*)self.view interactive:NO];
+}
+
+#pragma mark - UIAlertViewDelegate
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == alertView.cancelButtonIndex) {
+        [self.notifier authorizeNotifications:NO];
+    }else{
+        [self.notifier authorizeNotifications:YES];
+        [self scheduleNotification];
+    }
 }
 @end

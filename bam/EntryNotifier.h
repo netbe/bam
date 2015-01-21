@@ -8,10 +8,15 @@
 
 #import <Foundation/Foundation.h>
 
+extern NSString *const EntryNotifierNotificationAgreement;
 
 @interface EntryNotifier : NSObject
 @property(nonatomic, assign)NSUInteger defaultTime;
-- (void)scheduleNotificationWithText:(NSString*)text intervalInSeconds:(NSTimeInterval)seconds repeatInterval:(NSCalendarUnit)repeatInterval;
 
-
+- (void)scheduleNotificationWithText:(NSString*)text 
+                   intervalInSeconds:(NSTimeInterval)seconds 
+                      repeatInterval:(NSCalendarUnit)repeatInterval;
+- (void)showAuthorizationDialog;
+- (BOOL)shouldAskNotificationPermissions;
+- (void)authorizeNotifications:(BOOL)authorized;
 @end

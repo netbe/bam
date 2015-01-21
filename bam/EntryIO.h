@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @protocol AddEntryEventHandler <NSObject>
+- (void)scheduleNotification;
 - (void)prepareNewEntry;
 - (void)updateKey:(NSString*)key;
 - (void)updateValue:(NSString*)value;
