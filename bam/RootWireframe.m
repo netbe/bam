@@ -49,4 +49,10 @@
     
     [self.window makeKeyAndVisible];
 }
+
+- (void)presentEntryFromNotification:(NSNotification*)notification
+{
+
+}
+
 @end

@@ -18,14 +18,24 @@
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
-{
+{    
 #ifdef COCOAPODS_POD_AVAILABLE_TestFlightSDK
     // start of your application:didFinishLaunchingWithOptions
     [TestFlight takeOff:@"b483db3f-2cc5-470a-ac9b-f2f437f97112"];
 #endif
+    
     if (launchOptions && launchOptions[UIApplicationLaunchOptionsLocalNotificationKey]) {
         
     }
+    
+    
+    if (application.applicationState == UIApplicationStateBackground) {
+        // no UI required here 
+        NSLog(@"background wake up");
+        return YES;
+    }
+    
+   
     self.rootWireframe = [[RootWireframe alloc] init];
     [self.rootWireframe setup];
     
@@ -50,8 +60,24 @@
 
 - (void)application:(UIApplication *)application didRegisterUserNotificationSettings:(UIUserNotificationSettings *)notificationSettings
 {
-    if (notificationSettings != UIUserNotificationTypeNone) {
-        [[NSNotificationCenter defaultCenter] postNotificationName:EntryNotifierNotificationAgreement object:self];
-    }
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:EntryNotifierNotificationAgreement
+                                                        object:self
+                                                      userInfo:@{EntryNotifierNotificationAgreementDeniedKey: @(notificationSettings.types == UIUserNotificationTypeNone)}];
+    
+}
+
+- (void)application:(UIApplication *)application handleActionWithIdentifier:(NSString *)identifier 
+forLocalNotification:(UILocalNotification *)notification completionHandler:(void (^)())completionHandler
+{
+    // find entry from notification user info
+    // remove notification
+    [[UIApplication sharedApplication] cancelLocalNotification:notification];
+//    if ([notification. isEqualToString:EntryNotifierNotificationCategoryDefinition]) {
+        // increment period of notification
+//        self.rootWireframe.notifier 
+//    }
+    
+    
 }
 @end

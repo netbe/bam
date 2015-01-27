@@ -7,9 +7,17 @@
 //
 
 #import <Foundation/Foundation.h>
+typedef NS_ENUM(NSUInteger, EntryType){
+    EntryTypeDefinition,
+    EntryTypeGuess,
+    EntryTypeReverseGuess
+};
 
 @interface PlainEntry : NSObject
-@property (nonatomic, retain) NSString * key;
-@property (nonatomic, retain) NSString * value;
-
+@property (nonatomic, strong) NSString * key;
+@property (nonatomic, strong) NSString * value;
+@property (nonatomic, assign) EntryType type;
++ (instancetype)entryWithKey:(NSString*)key value:(NSString*)value;
+- (NSDictionary*)dictionaryRepresentation;
+- (NSString*)definitionTextForNotification;
 @end

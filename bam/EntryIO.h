@@ -14,6 +14,7 @@
 - (void)updateKey:(NSString*)key;
 - (void)updateValue:(NSString*)value;
 - (void)save;
+- (void)didSaveEntry;
 - (void)presentListInterface;
 @end
 

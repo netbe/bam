@@ -9,5 +9,23 @@
 #import "PlainEntry.h"
 
 @implementation PlainEntry
++ (instancetype)entryWithKey:(NSString*)key value:(NSString*)value
+{
+    PlainEntry* entry = [[PlainEntry alloc] init];
+    entry.key = key;
+    entry.value = value;
+    return entry;
+}
 
+- (NSDictionary*)dictionaryRepresentation
+{
+    return @{@"key": self.key,
+             @"value": self.value,
+             @"type": @(self.type)};
+}
+
+- (NSString*)definitionTextForNotification
+{
+    return [NSString stringWithFormat:@"'%@' = '%@'", self.key, self.value];
+}
 @end

@@ -12,6 +12,7 @@
 #import "ListEntryWireframe.h"
 
 #import "EntryNotifier.h"
+#import "PlainEntry.h"
 
 @interface AddEntryPresenter ()<UIAlertViewDelegate>
 
@@ -99,28 +100,34 @@
     }
 }
 
-- (void)showPreAuthorizationDialog
-{
-    [[[UIAlertView alloc] initWithTitle:@"BAM" message:@"Do you want to use notifications to remind you entries?" delegate:self cancelButtonTitle:@"No, thanks" otherButtonTitles:@"Sure!", nil] show];
-}
-
-- (void)scheduleNotification
+- (void)didSaveEntry
 {
     if ([self.notifier shouldAskNotificationPermissions]) {
         [self showPreAuthorizationDialog];
     }else{
-        NSCalendarUnit unit = [self repeatIntervalForReminderName:EntryRepetitionSecond];
-        [self.notifier scheduleNotificationWithText:[self definitionTextForNotification] 
-                                  intervalInSeconds:self.repeatInterval.doubleValue
-                                     repeatInterval:unit];
+        [self scheduleNotification];
+        [self prepareNewEntry];
     }
 }
 
-- (NSString*)definitionTextForNotification
+- (void)showPreAuthorizationDialog
 {
-    return [NSString stringWithFormat:@"'%@' = '%@'", self.key, self.value];
+    [[[UIAlertView alloc] initWithTitle:@"BAM" message:@"Do you want to use notifications to remind you entries?" 
+                               delegate:self cancelButtonTitle:@"No, thanks" 
+                      otherButtonTitles:@"Sure!", nil] show];
 }
 
+- (void)scheduleNotification
+{
+    PlainEntry* entry = [PlainEntry entryWithKey:self.key value:self.value];
+    entry.type = EntryTypeDefinition;
+    NSCalendarUnit unit = [self repeatIntervalForReminderName:EntryRepetitionSecond];
+    [self.notifier scheduleNotificationWithText:[entry definitionTextForNotification] 
+                                       category:EntryNotifierNotificationCategoryDefinition
+                              intervalInSeconds:self.repeatInterval.doubleValue
+                                 repeatInterval:unit
+                                       userInfo:entry.dictionaryRepresentation];
+}
 
 - (void)presentListInterface
 {

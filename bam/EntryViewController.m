@@ -18,6 +18,9 @@ NSString * const EntryRepetitionHour = @"hourly";
 NSString * const EntryRepetitionDay = @"daily";
 NSString * const EntryRepetitionWeek = @"weekly";
 
+static NSInteger SuccessAlert = 1;
+static NSInteger FailureAlert = 2;
+
 @interface EntryViewController ()<UITextFieldDelegate>
 @property(nonatomic, strong)InputView* keyInputView;
 @property(nonatomic, strong)InputView* valueInputView;
@@ -176,6 +179,7 @@ NSString * const EntryRepetitionWeek = @"weekly";
                                                        delegate:self
                                               cancelButtonTitle:@"OK"
                                               otherButtonTitles:nil];
+    alertView.tag = SuccessAlert;
     [alertView show];
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(kAlertDismissTimeout * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -188,11 +192,14 @@ NSString * const EntryRepetitionWeek = @"weekly";
 {
     self.view.tintColor = [UIColor redColor];
     self.view.window.tintColor = [UIColor redColor];
-    [[[UIAlertView alloc] initWithTitle:@"🔥 Error"
+    UIAlertView* alertView = [[UIAlertView alloc] initWithTitle:@"🔥 Error"
                                 message:error.localizedDescription
                                delegate:self
                       cancelButtonTitle:@"OK"
-                      otherButtonTitles:nil] show];
+                      otherButtonTitles:nil];
+    alertView.tag = FailureAlert;
+    [alertView show];
+
 }
 
 #pragma mark - UITextFieldDelegate
@@ -221,11 +228,11 @@ NSString * const EntryRepetitionWeek = @"weekly";
 
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
-    if ([alertView.title hasPrefix:@"🔥"]) {
+    if (alertView.tag == FailureAlert) {
         [self.valueInputView becomeFirstResponder];
-    }else{
-        [self.eventHandler scheduleNotification];
-        [self.eventHandler prepareNewEntry];
+    }else if (alertView.tag == SuccessAlert) {
+        [self.eventHandler didSaveEntry];
+
     }
 }
 

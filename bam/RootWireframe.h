@@ -8,17 +8,16 @@
 
 #import <Foundation/Foundation.h>
 
-//@class EntryViewController;
 @class AddEntryInteractor;
 @class AddEntryPresenter;
-@class EntryNotifier;
 
 @interface RootWireframe : NSObject
 @property(nonatomic, strong)UIWindow* window;
 
-//@property(nonatomic, strong)EntryViewController* entryViewController;
 @property(nonatomic, strong)AddEntryPresenter* presenter;
 @property(nonatomic, strong)AddEntryInteractor* interactor;
-@property(nonatomic, strong)EntryNotifier* notifier;
+
 -(void)setup;
+
+- (void)presentEntryFromNotification:(NSNotification*)notification;
 @end

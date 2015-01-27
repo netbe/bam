@@ -14,6 +14,4 @@
 -(id)initWithDataManager:(EntryDataStore*)dataStore;
 -(void)editEntryWithKey:(NSString*)key updatedKey:(NSString*)key value:(NSString*)value period:(NSUInteger)period;
 
--(void)editEntryWithKey:(NSString*)key updatedKey:(NSString*)key value:(NSString*)value period:(NSUInteger)period;
-
 @end

@@ -9,10 +9,34 @@
 #import "EntryNotifier.h"
 
 NSString *const EntryNotifierNotificationAgreement = @"com.fbenaiteau.bam.agreement";
+NSString *const EntryNotifierNotificationAgreementDeniedKey = @"com.fbenaiteau.bam.agreement.denied";
+NSString *const EntryNotifierNotificationCategoryDefinition = @"com.fbenaiteau.bam.notification.definition";
+
+
 @interface EntryNotifier ()
 @property(nonatomic, strong)NSOperationQueue* queue;
 @end
 @implementation EntryNotifier
+
+- (void)scheduleNotificationWithText:(NSString*)text 
+                            category:(NSString*)category
+                   intervalInSeconds:(NSTimeInterval)seconds
+                      repeatInterval:(NSCalendarUnit)repeatInterval 
+                            userInfo:(NSDictionary*)userInfo
+{
+    self.queue.suspended = ![self notificationsAuthorizedForCategoryNamed:category];
+    
+    UILocalNotification* notification = [[UILocalNotification alloc] init];
+    notification.alertBody = text;
+    notification.category = category;
+    notification.fireDate = [NSDate dateWithTimeIntervalSinceNow:seconds];
+    notification.repeatInterval = repeatInterval;
+    notification.userInfo = userInfo;
+    [self.queue addOperationWithBlock:^{
+        NSLog(@"Schedule %@", notification.alertBody);
+        [[UIApplication sharedApplication] scheduleLocalNotification:notification];
+    }];
+}
 
 - (BOOL)shouldAskNotificationPermissions
 {
@@ -33,61 +57,52 @@ NSString *const EntryNotifierNotificationAgreement = @"com.fbenaiteau.bam.agreem
     }
 }
 
-- (void)scheduleNotificationWithText:(NSString*)text intervalInSeconds:(NSTimeInterval)seconds repeatInterval:(NSCalendarUnit)repeatInterval
-{
-    UILocalNotification* notification = [[UILocalNotification alloc] init];
-    notification.alertBody = text;
-    notification.alertAction = @"Check Value";
-    notification.fireDate = [NSDate dateWithTimeIntervalSinceNow:seconds];
-    notification.repeatInterval = repeatInterval;    
-    [self.queue addOperationWithBlock:^{
-        NSLog(@"Schedule %@", notification.alertBody);
-        [[UIApplication sharedApplication] scheduleLocalNotification:notification];
-    }];
-}
-
 - (void)showAuthorizationDialog
 {
 #ifdef __IPHONE_8_0
-    UIUserNotificationCategory* category = [self registerActions];
+    UIUserNotificationCategory* definitionCategory = [self registerActions];
     NSMutableSet* categories = [NSMutableSet set];
-    [categories addObject:category];
+    [categories addObject:definitionCategory];
     UIUserNotificationSettings* notificationSettings = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert | UIUserNotificationTypeSound categories:categories];
     [[UIApplication sharedApplication] registerUserNotificationSettings:notificationSettings];
 #endif
-
 }
+
 #pragma mark - Private
+
+- (BOOL)notificationsAuthorizedForCategoryNamed:(NSString*)categoryName
+{
+    UIUserNotificationSettings* userSettings = [[UIApplication sharedApplication] currentUserNotificationSettings];
+    for (UIUserNotificationCategory* category in userSettings.categories) {
+        if ([category.identifier isEqual:categoryName]) {
+            return YES;
+        }
+    }
+    return NO;
+}
 
 - (void)receivedNotificationAgreement:(NSNotification*)notification
 {
+    BOOL notificationsDeactivated = [notification.userInfo[EntryNotifierNotificationAgreementDeniedKey] boolValue];
     // process queue
-    self.queue.suspended = NO;
-}
-
-- (void)applicationDidFinishLaunching:(NSNotification*)notification
-{
+    self.queue.suspended = notificationsDeactivated;
+    if (notificationsDeactivated) {
+        [[UIApplication sharedApplication] cancelAllLocalNotifications];
+    }
 }
 
 - (UIMutableUserNotificationCategory*)registerActions 
 {
     UIMutableUserNotificationAction* showValueAction = [[UIMutableUserNotificationAction alloc] init];
-    showValueAction.identifier = @"com.fbenaiteau.bam.show.value";
-    showValueAction.title = @"Show value";
-    showValueAction.activationMode = UIUserNotificationActivationModeForeground;
+    showValueAction.identifier = @"com.fbenaiteau.bam.notification.definition.action-seen";
+    showValueAction.title = @"Seen";
+    showValueAction.activationMode = UIUserNotificationActivationModeBackground;
     showValueAction.destructive = false;
     showValueAction.authenticationRequired = false;
     
-//    UIMutableUserNotificationAction* acceptLeadAction = [[UIMutableUserNotificationAction alloc] init];
-//    acceptLeadAction.identifier = @"com.fbenaiteau.bam.";
-//    acceptLeadAction.title = @"Show value";
-//    acceptLeadAction.activationMode = UIUserNotificationActivationModeForeground;
-//    acceptLeadAction.destructive = false;
-//    acceptLeadAction.authenticationRequired = false;
-    
     UIMutableUserNotificationCategory* category = [[UIMutableUserNotificationCategory alloc] init];
-    category.identifier = @"com.fbenaiteau.bam.notification";
-    [category setActions:@[showValueAction] forContext: UIUserNotificationActionContextDefault];
+    category.identifier = EntryNotifierNotificationCategoryDefinition;
+    [category setActions:@[showValueAction] forContext:UIUserNotificationActionContextDefault];
     return category;
 }
     
@@ -100,13 +115,6 @@ NSString *const EntryNotifierNotificationAgreement = @"com.fbenaiteau.bam.agreem
         self.defaultTime = 5;
         self.queue = [[NSOperationQueue alloc] init];
         self.queue.suspended = YES;
-        //        didReceiveLocalNotification
-        //        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationWillResignActive:) name:UIApplicationWillResignActiveNotification
-        //                                                   object:nil];
-        [[NSNotificationCenter defaultCenter] addObserver:self 
-                                                 selector:@selector(applicationDidFinishLaunching:) 
-                                                     name:UIApplicationDidFinishLaunchingNotification
-                                                   object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self 
                                                  selector:@selector(receivedNotificationAgreement:) 
                                                      name:EntryNotifierNotificationAgreement

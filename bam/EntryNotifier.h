@@ -9,14 +9,18 @@
 #import <Foundation/Foundation.h>
 
 extern NSString *const EntryNotifierNotificationAgreement;
+extern NSString *const EntryNotifierNotificationAgreementDeniedKey;
+extern NSString *const EntryNotifierNotificationCategoryDefinition;
 
 @interface EntryNotifier : NSObject
 @property(nonatomic, assign)NSUInteger defaultTime;
 
 - (void)scheduleNotificationWithText:(NSString*)text 
-                   intervalInSeconds:(NSTimeInterval)seconds 
-                      repeatInterval:(NSCalendarUnit)repeatInterval;
-- (void)showAuthorizationDialog;
+                            category:(NSString*)category
+                   intervalInSeconds:(NSTimeInterval)seconds
+                      repeatInterval:(NSCalendarUnit)repeatInterval 
+                            userInfo:(NSDictionary*)userInfo;
 - (BOOL)shouldAskNotificationPermissions;
 - (void)authorizeNotifications:(BOOL)authorized;
+- (void)showAuthorizationDialog;
 @end
