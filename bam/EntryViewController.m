@@ -7,17 +7,10 @@
 //
 
 #import "EntryViewController.h"
-
+#import "NotificationHelper.h"
 #import "InputView.h"
+
 static CGFloat kAlertDismissTimeout = 2.0;
-
-NSString * const EntryRepetitionNever = @"never";
-NSString * const EntryRepetitionSecond = @"second";
-NSString * const EntryRepetitionMinute = @"minute";
-NSString * const EntryRepetitionHour = @"hourly";
-NSString * const EntryRepetitionDay = @"daily";
-NSString * const EntryRepetitionWeek = @"weekly";
-
 static NSInteger SuccessAlert = 1;
 static NSInteger FailureAlert = 2;
 

@@ -7,9 +7,18 @@
 //
 
 #import <Foundation/Foundation.h>
-// to add interface
+
+@class AddEntryInteractor;
+@class AddEntryPresenter;
+
+/// to add interface
 @interface AddEntryWireframe : NSObject
+
+@property(nonatomic, strong)AddEntryPresenter* presenter;
+@property(nonatomic, strong)AddEntryInteractor* interactor;
+
 
 - (void)presentAddInterfaceFromViewController:(UIViewController*)viewController;
 
+- (void)presentAddInterfaceFromWindow:(UIWindow *)window;
 @end

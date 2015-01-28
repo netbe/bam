@@ -9,6 +9,16 @@
 #import "PlainEntry.h"
 
 @implementation PlainEntry
+
++ (instancetype)entryFromPayload:(NSDictionary*)payload
+{
+    PlainEntry* entry = [[PlainEntry alloc] init];
+    entry.key = payload[@"key"];
+    entry.value = payload[@"value"];
+    entry.type = [(NSNumber*)payload[@"type"] unsignedIntegerValue];
+    return entry;
+}
+
 + (instancetype)entryWithKey:(NSString*)key value:(NSString*)value
 {
     PlainEntry* entry = [[PlainEntry alloc] init];

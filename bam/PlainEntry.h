@@ -17,6 +17,8 @@ typedef NS_ENUM(NSUInteger, EntryType){
 @property (nonatomic, strong) NSString * key;
 @property (nonatomic, strong) NSString * value;
 @property (nonatomic, assign) EntryType type;
+
++ (instancetype)entryFromPayload:(NSDictionary*)payload;
 + (instancetype)entryWithKey:(NSString*)key value:(NSString*)value;
 - (NSDictionary*)dictionaryRepresentation;
 - (NSString*)definitionTextForNotification;

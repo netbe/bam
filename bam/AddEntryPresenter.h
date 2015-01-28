@@ -8,13 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-extern NSString * const EntryRepetitionNever;
-extern NSString * const EntryRepetitionSecond;
-extern NSString * const EntryRepetitionMinute;
-extern NSString * const EntryRepetitionHour;
-extern NSString * const EntryRepetitionDay;
-extern NSString * const EntryRepetitionWeek;
-
 @class AddEntryInteractor;
 @class ListEntryWireframe;
 @class EntryNotifier;

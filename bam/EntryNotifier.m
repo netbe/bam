@@ -11,6 +11,7 @@
 NSString *const EntryNotifierNotificationAgreement = @"com.fbenaiteau.bam.agreement";
 NSString *const EntryNotifierNotificationAgreementDeniedKey = @"com.fbenaiteau.bam.agreement.denied";
 NSString *const EntryNotifierNotificationCategoryDefinition = @"com.fbenaiteau.bam.notification.definition";
+NSString *const EntryNotifierNotificationCategoryDefinitionAction = @"com.fbenaiteau.bam.notification.definition.action-seen";
 
 
 @interface EntryNotifier ()
@@ -94,7 +95,7 @@ NSString *const EntryNotifierNotificationCategoryDefinition = @"com.fbenaiteau.b
 - (UIMutableUserNotificationCategory*)registerActions 
 {
     UIMutableUserNotificationAction* showValueAction = [[UIMutableUserNotificationAction alloc] init];
-    showValueAction.identifier = @"com.fbenaiteau.bam.notification.definition.action-seen";
+    showValueAction.identifier = EntryNotifierNotificationCategoryDefinitionAction;
     showValueAction.title = @"Seen";
     showValueAction.activationMode = UIUserNotificationActivationModeBackground;
     showValueAction.destructive = false;
