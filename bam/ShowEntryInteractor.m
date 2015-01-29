@@ -35,7 +35,11 @@
             [[UIApplication sharedApplication] cancelLocalNotification:notification];
             // schedule next reminder
             if (nextRepeatTime) {
-                [self.notifier scheduleNotificationWithText:entry.definitionTextForNotification category:EntryNotifierNotificationCategoryDefinition intervalInSeconds:Not] repeatInterval:<#(NSCalendarUnit)#> userInfo:<#(NSDictionary *)#>]
+                [self.notifier scheduleNotificationWithText:entry.definitionTextForNotification
+                                                   category:EntryNotifierNotificationCategoryDefinition
+                                          intervalInSeconds:0 // delayed
+                                             repeatInterval:nextRepeatTime.unsignedIntegerValue
+                                                   userInfo:entry.dictionaryRepresentation];
             }
         }
     }
@@ -50,7 +54,5 @@
     }
     return self;
 }
-
-
 
 @end

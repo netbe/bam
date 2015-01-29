@@ -9,12 +9,14 @@
 #import "AppDelegate.h"
 
 #import "AppDependencies.h"
+#import "EntryNotifier.h"
 
 @implementation AppDelegate
 
 - (void)processLocalNotification:(UILocalNotification*)notification
 {
-
+    [self presentWindow];
+    
 }
 
 - (void)presentWindow
@@ -42,7 +44,7 @@
     return YES;
 }
 
--(void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification
+- (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification
 {
     if ([UIApplication sharedApplication].applicationState == UIApplicationStateActive) {
         return;// ignore notifications now, could increment a badge in future
@@ -51,7 +53,6 @@
 
 - (void)application:(UIApplication *)application didRegisterUserNotificationSettings:(UIUserNotificationSettings *)notificationSettings
 {
-    
     [[NSNotificationCenter defaultCenter] postNotificationName:EntryNotifierNotificationAgreement
                                                         object:self
                                                       userInfo:@{EntryNotifierNotificationAgreementDeniedKey: @(notificationSettings.types == UIUserNotificationTypeNone)}];
@@ -61,10 +62,6 @@
 - (void)application:(UIApplication *)application handleActionWithIdentifier:(NSString *)identifier 
 forLocalNotification:(UILocalNotification *)notification completionHandler:(void (^)())completionHandler
 {
-    
-    // find entry from notification user info
-    // remove notification
-    [[UIApplication sharedApplication] cancelLocalNotification:notification];
-    // increment period of notification
+    [self.appDependencies handleActionWithIdentifier:identifier forLocalNotification:notification completionHandler:completionHandler];
 }
 @end

@@ -39,6 +39,7 @@
 		018FC8DA1A79274000CA44DF /* ShowEntryWireframe.m in Sources */ = {isa = PBXBuildFile; fileRef = 018FC8D91A79274000CA44DF /* ShowEntryWireframe.m */; };
 		018FC8DD1A79275D00CA44DF /* ShowEntryPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 018FC8DC1A79275D00CA44DF /* ShowEntryPresenter.m */; };
 		018FC8E01A7949AD00CA44DF /* NotificationHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 018FC8DF1A7949AD00CA44DF /* NotificationHelper.m */; };
+		018FC8E41A7A83C700CA44DF /* PlainLevel.m in Sources */ = {isa = PBXBuildFile; fileRef = 018FC8E31A7A83C700CA44DF /* PlainLevel.m */; };
 		0192EEB419885ADD00510A98 /* EditEntryWireframe.m in Sources */ = {isa = PBXBuildFile; fileRef = 0192EEB319885ADD00510A98 /* EditEntryWireframe.m */; };
 		0192EEB719885AFD00510A98 /* EditEntryPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0192EEB619885AFD00510A98 /* EditEntryPresenter.m */; };
 		01B40A6C19883D1800D10225 /* PlainEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 01B40A6B19883D1800D10225 /* PlainEntry.m */; };
@@ -116,6 +117,9 @@
 		018FC8DC1A79275D00CA44DF /* ShowEntryPresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowEntryPresenter.m; sourceTree = "<group>"; };
 		018FC8DE1A7949AD00CA44DF /* NotificationHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationHelper.h; sourceTree = "<group>"; };
 		018FC8DF1A7949AD00CA44DF /* NotificationHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationHelper.m; sourceTree = "<group>"; };
+		018FC8E11A7A838F00CA44DF /* Model_4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model_4.xcdatamodel; sourceTree = "<group>"; };
+		018FC8E21A7A83C700CA44DF /* PlainLevel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlainLevel.h; sourceTree = "<group>"; };
+		018FC8E31A7A83C700CA44DF /* PlainLevel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlainLevel.m; sourceTree = "<group>"; };
 		0192EEB219885ADD00510A98 /* EditEntryWireframe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditEntryWireframe.h; sourceTree = "<group>"; };
 		0192EEB319885ADD00510A98 /* EditEntryWireframe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditEntryWireframe.m; sourceTree = "<group>"; };
 		0192EEB519885AFD00510A98 /* EditEntryPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditEntryPresenter.h; sourceTree = "<group>"; };
@@ -366,6 +370,8 @@
 			children = (
 				01B40A6A19883D1800D10225 /* PlainEntry.h */,
 				01B40A6B19883D1800D10225 /* PlainEntry.m */,
+				018FC8E21A7A83C700CA44DF /* PlainLevel.h */,
+				018FC8E31A7A83C700CA44DF /* PlainLevel.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -535,6 +541,7 @@
 				0145A71419290F2F0034A245 /* CoreDataStack.m in Sources */,
 				0145A71819291A700034A245 /* Model.xcdatamodeld in Sources */,
 				01EEAC75192A44B300491AAF /* Entry+BAMAdditions.m in Sources */,
+				018FC8E41A7A83C700CA44DF /* PlainLevel.m in Sources */,
 				0192EEB719885AFD00510A98 /* EditEntryPresenter.m in Sources */,
 				0145A71B19291EEF0034A245 /* Entry.m in Sources */,
 				01B40A6C19883D1800D10225 /* PlainEntry.m in Sources */,
@@ -763,6 +770,7 @@
 		0145A70919290E030034A245 /* Model.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				018FC8E11A7A838F00CA44DF /* Model_4.xcdatamodel */,
 				0187942119774219007E93F7 /* Model_ 3.xcdatamodel */,
 				0145A71F19293A8C0034A245 /* Model_2.xcdatamodel */,
 				0145A70A19290E030034A245 /* Model.xcdatamodel */,

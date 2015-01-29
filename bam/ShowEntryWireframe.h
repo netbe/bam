@@ -8,8 +8,14 @@
 
 #import <Foundation/Foundation.h>
 
+@class ShowEntryInteractor;
+@class ShowEntryPresenter;
+
 @interface ShowEntryWireframe : NSObject
 @property(nonatomic, strong)ShowEntryInteractor* interactor;
+@property(nonatomic, strong)ShowEntryPresenter* presenter;
+
 - (void)handleActionWithIdentifier:(NSString *)identifier forLocalNotification:(UILocalNotification *)notification completionHandler:(void (^)())completionHandler;
 
+- (void)showNotification:(UILocalNotification*)notification inWindow:(UIWindow *)window;
 @end

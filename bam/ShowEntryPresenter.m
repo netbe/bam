@@ -12,16 +12,15 @@
 
 @implementation ShowEntryPresenter
 
-- (void)processNotification:(UILocalNotification*)notification action:()
+- (void)processNotification:(UILocalNotification*)notification
 {
-    notification
 
 }
 
 - (void)processDefinitionNotification
 {
     // tap notification, show interface
-    [self.wireframe presentEntryFromViewController:self.view];
+
     // mark as seen
 
 }

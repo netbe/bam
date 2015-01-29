@@ -24,6 +24,7 @@ static NSInteger FailureAlert = 2;
 @property(nonatomic, strong)NSArray* reminderValues;
 
 @property(nonatomic, strong)NSLayoutConstraint* listButtonBottomConstraint;
+@property(nonatomic, copy)dispatch_block_t autoDismissBlock;
 @end
 
 @implementation EntryViewController
@@ -174,10 +175,12 @@ static NSInteger FailureAlert = 2;
                                               otherButtonTitles:nil];
     alertView.tag = SuccessAlert;
     [alertView show];
-    
+
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(kAlertDismissTimeout * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        alertView.message = @"Dismissing...";
-        [alertView dismissWithClickedButtonIndex:0 animated:YES];
+        if (alertView.isVisible) {
+            alertView.message = @"Dismissing...";
+            [alertView dismissWithClickedButtonIndex:alertView.cancelButtonIndex animated:YES];
+        }
     });
 }
 

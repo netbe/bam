@@ -11,4 +11,5 @@
 @interface AppDependencies : NSObject
 - (void)handleActionWithIdentifier:(NSString *)identifier forLocalNotification:(UILocalNotification *)notification completionHandler:(void (^)())completionHandler;
 - (void)installRootViewControllerIntoWindow:(UIWindow *)window;
+- (void)showNotification:(UILocalNotification*)notification inWindow:(UIWindow *)window;
 @end

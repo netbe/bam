@@ -16,9 +16,6 @@ extern NSString *const EntryNotifierNotificationCategoryDefinitionAction;
 @interface EntryNotifier : NSObject
 @property(nonatomic, assign)NSUInteger defaultTime;
 
-- (NSUInteger)valueForReminderName:(NSString*)name;
-- (NSCalendarUnit)repeatIntervalForReminderName:(NSString*)name;
-
 - (void)scheduleNotificationWithText:(NSString*)text 
                             category:(NSString*)category
                    intervalInSeconds:(NSTimeInterval)seconds

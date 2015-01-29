@@ -14,5 +14,7 @@
 @interface ShowEntryInteractor : NSObject
 @property(nonatomic, strong)EntryDataStore* dataStore;
 @property(nonatomic, strong)EntryNotifier* notifier;
+
 -(id)initWithDataManager:(EntryDataStore*)dataStore notifier:(EntryNotifier*)entryNotifier;
+- (void)handleActionWithIdentifier:(NSString *)identifier forLocalNotification:(UILocalNotification *)notification;
 @end

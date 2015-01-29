@@ -18,6 +18,11 @@ NSString * const EntryRepetitionWeek = @"weekly";
 
 @implementation NotificationHelper
 
++ (NSNumber*)valueForRepeatInterval:(NSCalendarUnit)unit
+{
+
+}
+
 + (NSNumber*)nextRepeatIntervalForUnit:(NSCalendarUnit)unit
 {
     switch (unit) {

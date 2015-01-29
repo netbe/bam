@@ -34,7 +34,7 @@ NSString *const EntryNotifierNotificationCategoryDefinitionAction = @"com.fbenai
     notification.repeatInterval = repeatInterval;
     notification.userInfo = userInfo;
     [self.queue addOperationWithBlock:^{
-        NSLog(@"Schedule %@", notification.alertBody);
+        NSLog(@"Schedule %@", notification.description);
         [[UIApplication sharedApplication] scheduleLocalNotification:notification];
     }];
 }

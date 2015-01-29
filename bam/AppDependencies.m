@@ -76,7 +76,7 @@
     ShowEntryInteractor* showInteractor = [[ShowEntryInteractor alloc] initWithDataManager:dataStore notifier:notifier];
     ShowEntryPresenter* showPresenter = [ShowEntryPresenter new];
     showWireframe.interactor = showInteractor;
-    
+    showWireframe.presenter = showPresenter;
     
     self.showEntryWireframe = showWireframe;
 }
@@ -89,6 +89,11 @@
 - (void)handleActionWithIdentifier:(NSString *)identifier forLocalNotification:(UILocalNotification *)notification completionHandler:(void (^)())completionHandler
 {
     [self.showEntryWireframe handleActionWithIdentifier:identifier forLocalNotification:notification completionHandler:completionHandler];
+}
+
+- (void)showNotification:(UILocalNotification*)notification inWindow:(UIWindow *)window
+{
+    [self.showEntryWireframe showNotification:notification inWindow:window];
 }
 
 @end
