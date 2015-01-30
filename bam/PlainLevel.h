@@ -7,9 +7,25 @@
 //
 
 #import <Foundation/Foundation.h>
+typedef NS_ENUM(NSUInteger, EntryType){
+    EntryTypeDefinition,
+    EntryTypeGuess,
+    EntryTypeReverseGuess
+};
 
 @interface PlainLevel : NSObject
-@property (nonatomic, strong) NSNumber* repeatTimeInterval;
-@property (nonatomic, strong)
+@property (nonatomic, assign) NSUInteger difficulty;
+@property (nonatomic, assign) NSTimeInterval timeInterval;
+@property (nonatomic, assign) NSCalendarUnit repeatTimeInterval;
+@property (nonatomic, assign) EntryType type;
 
+- (NSDictionary*)dictionaryRepresentation;
+
+- (instancetype)nextLevel;
+
++ (instancetype)level1;
++ (instancetype)level2;
++ (instancetype)level3;
++ (instancetype)level4;
++ (instancetype)level5;
 @end
