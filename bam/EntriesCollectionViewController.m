@@ -6,10 +6,49 @@
 //  Copyright (c) 2014 François Benaiteau. All rights reserved.
 //
 #import "EntriesCollectionViewController.h"
+
 #import "EntryCell.h"
+#import "PlainLevel.h"
 
 static NSString* const kCellEntryIdentifier = @"com.bam.cell.entry";
 static NSString* const kCellAddIdentifier = @"com.bam.cell.add";
+
+@interface PlainEntry (UI)
+-(UIColor*)borderColor;
+@end
+
+@implementation PlainEntry (UI)
+
+-(UIColor*)borderColor
+{
+    switch (self.level.difficulty) {
+        case 1:
+            // R: 241, G: 241, B: 241
+            return [UIColor colorWithRed:241 green:241 blue:241 alpha:1.0];
+            break;
+        case 2:
+            // R: 191, G: 221, B: 194
+            return [UIColor colorWithRed:191 green:221 blue:194 alpha:1.0];
+            break;
+        case 3:
+            // R: 141, G: 202, B: 147
+            return [UIColor colorWithRed:141 green:202 blue:147 alpha:1.0];
+            break;
+        case 4:
+            // R: 91, G: 182, B: 100
+            return [UIColor colorWithRed:91 green:182 blue:100 alpha:1.0];
+            break;
+        case 5:
+            // R: 41, G: 163, B: 54
+            return [UIColor colorWithRed:41 green:163 blue:54 alpha:1.0];
+            break;
+        default:
+            break;
+    }
+    return nil;
+}
+
+@end
 
 @interface EntriesCollectionViewController ()
 @property(nonatomic, strong)NSArray* entries;
@@ -82,6 +121,7 @@ static NSString* const kCellAddIdentifier = @"com.bam.cell.add";
     PlainEntry* entry = self.entries[indexPath.row];
     cell.keyLabel.text = entry.key.capitalizedString;
     cell.valueLabel.text = entry.value;
+    [cell setBorderColor:[entry borderColor]];
 }
 
 

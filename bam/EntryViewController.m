@@ -7,7 +7,6 @@
 //
 
 #import "EntryViewController.h"
-#import "NotificationHelper.h"
 #import "InputView.h"
 
 static CGFloat kAlertDismissTimeout = 2.0;
@@ -19,29 +18,11 @@ static NSInteger FailureAlert = 2;
 @property(nonatomic, strong)InputView* valueInputView;
 @property(nonatomic, strong)UIButton* listButton;
 
-@property(nonatomic, strong)UISegmentedControl* reminderControl;
-
-@property(nonatomic, strong)NSArray* reminderValues;
-
 @property(nonatomic, strong)NSLayoutConstraint* listButtonBottomConstraint;
 @property(nonatomic, copy)dispatch_block_t autoDismissBlock;
 @end
 
 @implementation EntryViewController
-
-- (NSArray *)reminderValues
-{
-    if (!_reminderValues) {
-        _reminderValues = @[EntryRepetitionNever,
-                            EntryRepetitionSecond,
-                            EntryRepetitionMinute,
-                            EntryRepetitionHour,
-                            EntryRepetitionDay,
-                            EntryRepetitionWeek];
-    }
-    return _reminderValues;
-    
-}
 
 - (void)viewDidLoad
 {
@@ -61,10 +42,6 @@ static NSInteger FailureAlert = 2;
     self.keyInputView = addInputView(@"Key", UIReturnKeyNext);
     self.valueInputView = addInputView(@"Value", UIReturnKeyDone);
     
-    self.reminderControl = [[UISegmentedControl alloc] initWithItems:self.reminderValues];    
-    self.reminderControl.selectedSegmentIndex = [self.reminderValues indexOfObject:EntryRepetitionNever];
-    [self.view addSubview:self.reminderControl];
-    
     self.listButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [self.listButton setTitle:@"0 entries" forState:UIControlStateNormal];
     [self.listButton sizeToFit];
@@ -73,7 +50,7 @@ static NSInteger FailureAlert = 2;
     [self.view addSubview:self.listButton];
     
     // layout
-    NSDictionary* views = NSDictionaryOfVariableBindings(_keyInputView, _valueInputView, _reminderControl);
+    NSDictionary* views = NSDictionaryOfVariableBindings(_keyInputView, _valueInputView);
     for (UIView* view in views.allValues) {
         view.translatesAutoresizingMaskIntoConstraints = NO;
         [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-(10)-[view]-(10)-|"
@@ -82,7 +59,7 @@ static NSInteger FailureAlert = 2;
                                                                             views:NSDictionaryOfVariableBindings(view)]];
         
     }
-    NSArray* constraints = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-(40)-[_reminderControl]-[_keyInputView]-[_valueInputView]"
+    NSArray* constraints = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-(40)-[_keyInputView]-[_valueInputView]"
                                                                    options:NSLayoutFormatAlignAllCenterX // |-60
                                                                    metrics:nil 
                                                                      views:views];
@@ -112,7 +89,6 @@ static NSInteger FailureAlert = 2;
     
     UITapGestureRecognizer* gesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleGesture)];
     [self.view addGestureRecognizer:gesture];
-    self.reminderControl.hidden = YES;
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -142,16 +118,6 @@ static NSInteger FailureAlert = 2;
 - (void)setValue:(NSString*)value
 {
     self.valueInputView.text = value;
-}
-
-- (void)selectReminderValueAtIndex:(NSUInteger)index
-{
-    self.reminderControl.selectedSegmentIndex = index;
-}
-
-- (NSString*)selectedReminderValue
-{
-    return self.reminderValues[self.reminderControl.selectedSegmentIndex];
 }
 
 - (void)focusOnKey

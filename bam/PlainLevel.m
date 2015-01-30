@@ -34,6 +34,16 @@
     return nextLevel;
 }
 
++ (instancetype)levelFromPayload:(NSDictionary*)payload
+{
+    PlainLevel* level = [[PlainLevel alloc] init];
+    level.difficulty = [payload[@"difficulty"] unsignedIntegerValue];
+    level.timeInterval = [payload[@"timeInterval"] doubleValue];
+    level.repeatTimeInterval = [payload[@"repeatTimeInterval"] unsignedIntegerValue];
+    level.type = [(NSNumber*)payload[@"type"] unsignedIntegerValue];
+    return level;
+}
+
 + (instancetype)level1
 {
     PlainLevel* level = [PlainLevel new];

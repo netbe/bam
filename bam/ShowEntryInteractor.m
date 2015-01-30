@@ -10,8 +10,8 @@
 
 #import "EntryDataStore.h"
 #import "EntryNotifier.h"
-#import "NotificationHelper.h"
 #import "PlainEntry.h"
+#import "PlainLevel.h"
 #import "Entry.h"
 
 @implementation ShowEntryInteractor
@@ -21,12 +21,12 @@
     if ([identifier isEqualToString:EntryNotifierNotificationCategoryDefinitionAction]) {
 
         PlainEntry* entry = [PlainEntry entryFromPayload:notification.userInfo];
+        PlainLevel* nextLevel = [entry.level nextLevel];
         // update model
         NSError* error = nil;
-        NSNumber* nextRepeatTime = [NotificationHelper nextRepeatIntervalForUnit:notification.repeatInterval];
         BOOL success = [self.dataStore entryWithKey:entry.key updateBlock:^(Entry *entry) {
-            entry.repeatInterval = nextRepeatTime;
-            entry.learned = @(nextRepeatTime == nil);
+            entry.level = nextLevel;
+            entry.learned = @(nextLevel == nil);
         } error:&error];
         if (!success) {
             NSLog(@"Error: %@", error.localizedDescription);
@@ -34,11 +34,11 @@
             // cancel notification
             [[UIApplication sharedApplication] cancelLocalNotification:notification];
             // schedule next reminder
-            if (nextRepeatTime) {
-                [self.notifier scheduleNotificationWithText:entry.definitionTextForNotification
+            if (nextLevel) {
+                [self.notifier scheduleNotificationWithText:entry.textForNotification
                                                    category:EntryNotifierNotificationCategoryDefinition
-                                          intervalInSeconds:0 // delayed
-                                             repeatInterval:nextRepeatTime.unsignedIntegerValue
+                                          intervalInSeconds:nextLevel.timeInterval
+                                             repeatInterval:nextLevel.repeatTimeInterval
                                                    userInfo:entry.dictionaryRepresentation];
             }
         }

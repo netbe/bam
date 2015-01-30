@@ -19,12 +19,8 @@
 @end
 
 @protocol AddEntryView <NSObject>
-- (NSString*)selectedReminderValue;
-
 - (void)setKey:(NSString*)key;
 - (void)setValue:(NSString*)value;
-
-- (void)selectReminderValueAtIndex:(NSUInteger)index;
 
 - (void)focusOnKey;
 - (void)focusOnValue;

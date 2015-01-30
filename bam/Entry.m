@@ -2,8 +2,8 @@
 //  Entry.m
 //  bam
 //
-//  Created by François Benaiteau on 19/05/14.
-//  Copyright (c) 2014 François Benaiteau. All rights reserved.
+//  Created by François Benaiteau on 30/01/15.
+//  Copyright (c) 2015 François Benaiteau. All rights reserved.
 //
 
 #import "Entry.h"
@@ -13,7 +13,7 @@
 
 @dynamic key;
 @dynamic learned;
-@dynamic repeatInterval;
 @dynamic value;
+@dynamic level;
 
 @end

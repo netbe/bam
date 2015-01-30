@@ -13,7 +13,7 @@
 
 #import "EntryNotifier.h"
 #import "PlainEntry.h"
-#import "NotificationHelper.h"
+#import "PlainLevel.h"
 
 @interface AddEntryPresenter ()<UIAlertViewDelegate>
 
@@ -35,7 +35,6 @@
 {
     self.key = nil;
     self.value = nil;
-    self.repeatInterval = nil;
     
     [self.view setKey:nil];
     [self.view setValue:nil];
@@ -56,11 +55,9 @@
 
 - (void)save
 {
-    NSCalendarUnit unit = [NotificationHelper repeatIntervalForReminderName:EntryRepetitionSecond];
-    //    self.repeatInterval = @([self valueForReminderName:self.view.selectedReminderValue]);
-    self.repeatInterval = @([NotificationHelper valueForReminderName:EntryRepetitionSecond]);
     NSError* error = nil;
-    if ([self.interactor addEntryWithKey:self.key value:self.value period:self.repeatInterval error:&error]) {
+    
+    if ([self.interactor addEntryWithKey:self.key value:self.value level:[[PlainLevel level1] dictionaryRepresentation] error:&error]) {
         [self.view showSuccess];
         [self updateCount];
     }else{
@@ -89,12 +86,10 @@
 - (void)scheduleNotification
 {
     PlainEntry* entry = [PlainEntry entryWithKey:self.key value:self.value];
-    entry.type = EntryTypeDefinition;
-    NSCalendarUnit unit = [NotificationHelper repeatIntervalForReminderName:EntryRepetitionSecond];
-    [self.notifier scheduleNotificationWithText:[entry definitionTextForNotification] 
+    [self.notifier scheduleNotificationWithText:[entry textForNotification]
                                        category:EntryNotifierNotificationCategoryDefinition
-                              intervalInSeconds:self.repeatInterval.doubleValue
-                                 repeatInterval:unit
+                              intervalInSeconds:entry.level.timeInterval
+                                 repeatInterval:entry.level.repeatTimeInterval
                                        userInfo:entry.dictionaryRepresentation];
 }
 

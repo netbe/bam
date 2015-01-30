@@ -23,6 +23,7 @@ typedef NS_ENUM(NSUInteger, EntryType){
 
 - (instancetype)nextLevel;
 
++ (instancetype)levelFromPayload:(NSDictionary*)payload;
 + (instancetype)level1;
 + (instancetype)level2;
 + (instancetype)level3;
