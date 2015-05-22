@@ -9,21 +9,12 @@
 #import "AppDelegate.h"
 
 #import "RootWireframe.h"
-#import "EntryNotifier.h"
-
-#ifdef COCOAPODS_POD_AVAILABLE_TestFlightSDK
-#import "TestFlight.h"
-#endif
+#import "EntryNotifier.h"   
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {    
-#ifdef COCOAPODS_POD_AVAILABLE_TestFlightSDK
-    // start of your application:didFinishLaunchingWithOptions
-    [TestFlight takeOff:@"b483db3f-2cc5-470a-ac9b-f2f437f97112"];
-#endif
-    
     if (launchOptions && launchOptions[UIApplicationLaunchOptionsLocalNotificationKey]) {
         
     }
@@ -50,7 +41,7 @@
     
     // notification received when application is visible
     // for now just ignore!
-    //    [NSNotificationCenter defaultCenter] postNotificationName:<#(NSString *)#> object:<#(id)#>
+    //    [NSNotificationCenter defaultCenter] postNotificationName:<#(NSString *)#> object:<#(id)#>§
     //    [[UIApplication sharedApplication] presentLocalNotificationNow:notification];
     
     //    NSDictionary *userInfo = notification.userInfo;
