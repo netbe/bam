@@ -13,6 +13,7 @@
 
 #import "EntryNotifier.h"
 #import "PlainEntry.h"
+#import "PlainLevel.h"
 
 @interface AddEntryPresenter ()<UIAlertViewDelegate>
 
@@ -20,39 +21,7 @@
 
 @implementation AddEntryPresenter
 
-- (NSUInteger)valueForReminderName:(NSString*)name
-{
-    if ([name isEqualToString:EntryRepetitionSecond]) {
-        return 30;
-    }else if ([name isEqualToString:EntryRepetitionMinute]) {
-        return 5 * 60;
-    }else if ([name isEqualToString:EntryRepetitionHour]) {
-        return 60 * 60;
-    }else if ([name isEqualToString:EntryRepetitionDay]) {
-        return 24 * 60 * 60; 
-    }else if ([name isEqualToString:EntryRepetitionWeek]) {
-        return 7 * 24 * 60 * 60; 
-    }else{
-        return 0;// EntryRepetitionNever and .*
-    }
-}
 
-- (NSCalendarUnit)repeatIntervalForReminderName:(NSString*)name
-{
-    if ([name isEqualToString:EntryRepetitionSecond]) {
-        return NSSecondCalendarUnit;
-    }else if ([name isEqualToString:EntryRepetitionMinute]) {
-        return NSMinuteCalendarUnit;
-    }else if ([name isEqualToString:EntryRepetitionHour]) {
-        return NSHourCalendarUnit;
-    }else if ([name isEqualToString:EntryRepetitionDay]) {
-        return NSDayCalendarUnit; 
-    }else if ([name isEqualToString:EntryRepetitionWeek]) {
-        return NSWeekCalendarUnit; 
-    }else{
-        return 0;// EntryRepetitionNever and .*
-    }
-}
 - (void)updateCount
 {
     NSUInteger count = [self.interactor countEntries];
@@ -66,7 +35,6 @@
 {
     self.key = nil;
     self.value = nil;
-    self.repeatInterval = nil;
     
     [self.view setKey:nil];
     [self.view setValue:nil];
@@ -87,11 +55,9 @@
 
 - (void)save
 {
-    NSCalendarUnit unit = [self repeatIntervalForReminderName:EntryRepetitionSecond];
-    //    self.repeatInterval = @([self valueForReminderName:self.view.selectedReminderValue]);
-    self.repeatInterval = @([self valueForReminderName:EntryRepetitionSecond]);
     NSError* error = nil;
-    if ([self.interactor addEntryWithKey:self.key value:self.value period:self.repeatInterval error:&error]) {
+    
+    if ([self.interactor addEntryWithKey:self.key value:self.value level:[[PlainLevel level1] dictionaryRepresentation] error:&error]) {
         [self.view showSuccess];
         [self updateCount];
     }else{
@@ -120,12 +86,10 @@
 - (void)scheduleNotification
 {
     PlainEntry* entry = [PlainEntry entryWithKey:self.key value:self.value];
-    entry.type = EntryTypeDefinition;
-    NSCalendarUnit unit = [self repeatIntervalForReminderName:EntryRepetitionSecond];
-    [self.notifier scheduleNotificationWithText:[entry definitionTextForNotification] 
+    [self.notifier scheduleNotificationWithText:[entry textForNotification]
                                        category:EntryNotifierNotificationCategoryDefinition
-                              intervalInSeconds:self.repeatInterval.doubleValue
-                                 repeatInterval:unit
+                              intervalInSeconds:entry.level.timeInterval
+                                 repeatInterval:entry.level.repeatTimeInterval
                                        userInfo:entry.dictionaryRepresentation];
 }
 

@@ -26,12 +26,12 @@
     return self;
 }
 
--(BOOL)addEntryWithKey:(NSString*)key value:(NSString*)value period:(NSNumber*)period error:(NSError**)pError
+-(BOOL)addEntryWithKey:(NSString*)key value:(NSString*)value level:(id)level error:(NSError**)pError
 {
     return [self.dataStore entryWithAddBlock:^(Entry *entry) {
         entry.key = key;
         entry.value = value;
-        entry.repeatInterval = period;
+        entry.level = level;
     } error:pError];
 }
 

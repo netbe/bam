@@ -11,7 +11,7 @@
 #import "EntryDataStore.h"
 #import "Entry.h"
 #import "PlainEntry.h"
-
+#import "PlainLevel.h"
 @interface ListEntryInteractor ()
 @property(nonatomic, strong)EntryDataStore* dataStore;
 @end
@@ -35,6 +35,7 @@
         PlainEntry * plainEntry = [[PlainEntry alloc] init];
         plainEntry.key = entry.key;
         plainEntry.value = entry.value;
+        plainEntry.level = [PlainLevel levelFromPayload:entry.level];
         [plainEntries addObject:plainEntry];
     }
     return plainEntries;

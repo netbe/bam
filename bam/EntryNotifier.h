@@ -11,6 +11,7 @@
 extern NSString *const EntryNotifierNotificationAgreement;
 extern NSString *const EntryNotifierNotificationAgreementDeniedKey;
 extern NSString *const EntryNotifierNotificationCategoryDefinition;
+extern NSString *const EntryNotifierNotificationCategoryDefinitionAction;
 
 @interface EntryNotifier : NSObject
 @property(nonatomic, assign)NSUInteger defaultTime;

@@ -17,6 +17,6 @@
 @property(nonatomic, strong, readonly)EntryDataStore* dataStore;
 
 -(id)initWithDataManager:(EntryDataStore*)dataStore;
--(BOOL)addEntryWithKey:(NSString*)key value:(NSString*)value period:(NSNumber*)period error:(NSError**)pError;
+-(BOOL)addEntryWithKey:(NSString*)key value:(NSString*)value level:(id)level error:(NSError**)pError;
 -(NSUInteger)countEntries;
 @end

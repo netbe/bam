@@ -50,6 +50,7 @@
     return result;
 
 }
+
 -(NSArray*)findAllEntriesWithError:(NSError**)pError
 {
     NSFetchRequest* request = [[NSFetchRequest alloc] initWithEntityName:@"Entry"];

@@ -8,10 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@class RootWireframe;
+@class AppDependencies;
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
-@property (nonatomic, strong) RootWireframe *rootWireframe;
-
+@property (nonatomic, strong) AppDependencies* appDependencies;
+@property (nonatomic, strong)UIWindow* window;
 @end
