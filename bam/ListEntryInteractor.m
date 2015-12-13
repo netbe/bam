@@ -27,7 +27,7 @@
     return self;
 }
 
--(NSArray*)findEntries
+-(NSArray<PlainEntry*>*)findEntries
 {
     NSMutableArray* plainEntries = [[NSMutableArray alloc] init];
     NSArray* entries = [self.dataStore findAllEntriesWithError:NULL];

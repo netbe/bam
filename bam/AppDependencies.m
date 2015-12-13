@@ -8,10 +8,6 @@
 
 #import "AppDependencies.h"
 
-#ifdef COCOAPODS_POD_AVAILABLE_TestFlightSDK
-#import "TestFlight.h"
-#endif
-
 #import "EntryDataStore.h"
 #import "EntryNotifier.h"
 
@@ -44,11 +40,6 @@
 
 - (void)configureDependencies
 {
-#ifdef COCOAPODS_POD_AVAILABLE_TestFlightSDK
-    // start of your application:didFinishLaunchingWithOptions
-    [TestFlight takeOff:@"b483db3f-2cc5-470a-ac9b-f2f437f97112"];
-#endif
-    
     EntryDataStore* dataStore = [[EntryDataStore alloc] init];
     EntryNotifier* notifier = [[EntryNotifier alloc] init];
     

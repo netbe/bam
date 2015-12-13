@@ -9,9 +9,10 @@
 #import <Foundation/Foundation.h>
 
 @class EntryDataStore;
+@class PlainEntry;
 
 @interface ListEntryInteractor : NSObject
 -(id)initWithDataManager:(EntryDataStore*)dataStore;
--(NSArray*/*PlainEntry*/)findEntries;
+-(NSArray<PlainEntry*>*)findEntries;
 
 @end
