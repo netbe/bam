@@ -10,9 +10,12 @@
 
 NSString *const EntryNotifierNotificationAgreement = @"com.fbenaiteau.bam.agreement";
 NSString *const EntryNotifierNotificationAgreementDeniedKey = @"com.fbenaiteau.bam.agreement.denied";
-NSString *const EntryNotifierNotificationCategoryDefinition = @"com.fbenaiteau.bam.notification.definition";
-NSString *const EntryNotifierNotificationCategoryDefinitionAction = @"com.fbenaiteau.bam.notification.definition.action-seen";
 
+NSString *const EntryNotifierNotificationDefinitionCategory = @"com.fbenaiteau.bam.notification.definition";
+NSString *const EntryNotifierNotificationDefinitionAction = @"com.fbenaiteau.bam.notification.definition.action-seen";
+
+NSString *const EntryNotifierNotificationQuizCategory = @"com.fbenaiteau.bam.notification.test";
+NSString *const EntryNotifierNotificationAnswerAction = @"com.fbenaiteau.bam.notification.test.action-answer";
 
 @interface EntryNotifier ()
 @property(nonatomic, strong)NSOperationQueue* queue;
@@ -61,9 +64,7 @@ NSString *const EntryNotifierNotificationCategoryDefinitionAction = @"com.fbenai
 - (void)showAuthorizationDialog
 {
 #ifdef __IPHONE_8_0
-    UIUserNotificationCategory* definitionCategory = [self registerActions];
-    NSMutableSet* categories = [NSMutableSet set];
-    [categories addObject:definitionCategory];
+    NSSet* categories = [self registerNotificationCategories];
     UIUserNotificationSettings* notificationSettings = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert | UIUserNotificationTypeSound categories:categories];
     [[UIApplication sharedApplication] registerUserNotificationSettings:notificationSettings];
 #endif
@@ -92,21 +93,53 @@ NSString *const EntryNotifierNotificationCategoryDefinitionAction = @"com.fbenai
     }
 }
 
-- (UIMutableUserNotificationCategory*)registerActions 
+- (UIMutableUserNotificationCategory*)definitionCategory
 {
     UIMutableUserNotificationAction* showValueAction = [[UIMutableUserNotificationAction alloc] init];
-    showValueAction.identifier = EntryNotifierNotificationCategoryDefinitionAction;
+    showValueAction.identifier = EntryNotifierNotificationDefinitionAction;
     showValueAction.title = @"Seen";
     showValueAction.activationMode = UIUserNotificationActivationModeBackground;
     showValueAction.destructive = false;
     showValueAction.authenticationRequired = false;
     
     UIMutableUserNotificationCategory* category = [[UIMutableUserNotificationCategory alloc] init];
-    category.identifier = EntryNotifierNotificationCategoryDefinition;
+    category.identifier = EntryNotifierNotificationDefinitionCategory;
     [category setActions:@[showValueAction] forContext:UIUserNotificationActionContextDefault];
     return category;
 }
+
+- (NSSet*)registerNotificationCategories
+{
+    return [NSSet setWithObjects:[self definitionCategory],
+            [self quizCategory], nil];
+}
+
+- (UIMutableUserNotificationCategory*)quizCategory
+{
+    UIMutableUserNotificationAction* showValueAction = [[UIMutableUserNotificationAction alloc] init];
+    showValueAction.identifier = EntryNotifierNotificationAnswerAction;
+    showValueAction.title = @"Answer";
+    showValueAction.activationMode = UIUserNotificationActivationModeBackground;
+    showValueAction.destructive = false;
+    showValueAction.authenticationRequired = false;
+    showValueAction.behavior = UIUserNotificationActionBehaviorTextInput;
+
+    UIMutableUserNotificationAction* cancelAction = [[UIMutableUserNotificationAction alloc] init];
+    cancelAction.identifier = EntryNotifierNotificationAnswerAction;
+    cancelAction.title = @"Don't know";
+    cancelAction.activationMode = UIUserNotificationActivationModeBackground;
+    cancelAction.destructive = false;
+    cancelAction.authenticationRequired = false;
+    cancelAction.behavior = UIUserNotificationActionBehaviorDefault;
+
     
+    UIMutableUserNotificationCategory* category = [[UIMutableUserNotificationCategory alloc] init];
+    category.identifier = EntryNotifierNotificationQuizCategory;
+    [category setActions:@[showValueAction] forContext:UIUserNotificationActionContextDefault];
+    return category;
+}
+
+
 #pragma mark - Lifecycle
 
 - (id)init

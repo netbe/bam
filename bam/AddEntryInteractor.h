@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @class EntryDataStore;
+@class PlainEntry;
 
 /**
  * @brief Interactor to add an Entry
@@ -19,4 +20,5 @@
 -(id)initWithDataManager:(EntryDataStore*)dataStore;
 -(BOOL)addEntryWithKey:(NSString*)key value:(NSString*)value level:(id)level error:(NSError**)pError;
 -(NSUInteger)countEntries;
+-(PlainEntry*)lastSavedEntry;
 @end

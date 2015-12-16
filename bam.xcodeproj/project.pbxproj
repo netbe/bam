@@ -31,6 +31,7 @@
 		014A97D318F86940002DBA74 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 014A97BB18F8693F002DBA74 /* UIKit.framework */; };
 		014A97DB18F86940002DBA74 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 014A97D918F86940002DBA74 /* InfoPlist.strings */; };
 		014A97DD18F86940002DBA74 /* bamTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 014A97DC18F86940002DBA74 /* bamTests.m */; };
+		0153741B1C21CF4100991D32 /* ShowEntryInteractorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0153741A1C21CF4100991D32 /* ShowEntryInteractorTests.m */; };
 		016B5FFF1962082D00316F2B /* AddEntryInteractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 016B5FFE1962082D00316F2B /* AddEntryInteractor.m */; };
 		016B60031962092A00316F2B /* EntryDataStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 016B60021962092A00316F2B /* EntryDataStore.m */; };
 		018FC8D31A79009800CA44DF /* AppDependencies.m in Sources */ = {isa = PBXBuildFile; fileRef = 018FC8D21A79009800CA44DF /* AppDependencies.m */; };
@@ -98,6 +99,7 @@
 		014A97D818F86940002DBA74 /* bamTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "bamTests-Info.plist"; sourceTree = "<group>"; };
 		014A97DA18F86940002DBA74 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		014A97DC18F86940002DBA74 /* bamTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = bamTests.m; sourceTree = "<group>"; };
+		0153741A1C21CF4100991D32 /* ShowEntryInteractorTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowEntryInteractorTests.m; sourceTree = "<group>"; };
 		016B5FFD1962082D00316F2B /* AddEntryInteractor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddEntryInteractor.h; sourceTree = "<group>"; };
 		016B5FFE1962082D00316F2B /* AddEntryInteractor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddEntryInteractor.m; sourceTree = "<group>"; };
 		016B60011962092A00316F2B /* EntryDataStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EntryDataStore.h; sourceTree = "<group>"; };
@@ -247,6 +249,7 @@
 			children = (
 				014A97DC18F86940002DBA74 /* bamTests.m */,
 				014A97D718F86940002DBA74 /* Supporting Files */,
+				0153741A1C21CF4100991D32 /* ShowEntryInteractorTests.m */,
 			);
 			path = bamTests;
 			sourceTree = "<group>";
@@ -503,6 +506,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0153741B1C21CF4100991D32 /* ShowEntryInteractorTests.m in Sources */,
 				014A97DD18F86940002DBA74 /* bamTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

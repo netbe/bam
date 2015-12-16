@@ -68,26 +68,28 @@
 
 - (void)didSaveEntry
 {
+    [self prepareNewEntry];
     if ([self.notifier shouldAskNotificationPermissions]) {
         [self showPreAuthorizationDialog];
     }else{
         [self scheduleNotification];
-        [self prepareNewEntry];
+        
     }
+    
 }
 
 - (void)showPreAuthorizationDialog
 {
-    [[[UIAlertView alloc] initWithTitle:@"BAM" message:@"Do you want to use notifications to remind you entries?" 
-                               delegate:self cancelButtonTitle:@"No, thanks" 
+    [[[UIAlertView alloc] initWithTitle:@"BAM" message:@"Do you want to use notifications to remind you entries?"
+                               delegate:self cancelButtonTitle:@"No, thanks"
                       otherButtonTitles:@"Sure!", nil] show];
 }
 
 - (void)scheduleNotification
 {
-    PlainEntry* entry = [PlainEntry entryWithKey:self.key value:self.value];
+    PlainEntry* entry = [self.interactor lastSavedEntry];
     [self.notifier scheduleNotificationWithText:[entry textForNotification]
-                                       category:EntryNotifierNotificationCategoryDefinition
+                                       category:EntryNotifierNotificationDefinitionCategory
                               intervalInSeconds:entry.level.timeInterval
                                  repeatInterval:entry.level.repeatTimeInterval
                                        userInfo:entry.dictionaryRepresentation];

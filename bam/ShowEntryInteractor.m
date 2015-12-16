@@ -18,14 +18,14 @@
 
 - (void)handleActionWithIdentifier:(NSString *)identifier forLocalNotification:(UILocalNotification *)notification
 {
-    if ([identifier isEqualToString:EntryNotifierNotificationCategoryDefinitionAction]) {
+    if ([identifier isEqualToString:EntryNotifierNotificationDefinitionAction]) {
 
-        PlainEntry* entry = [PlainEntry entryFromPayload:notification.userInfo];
-        PlainLevel* nextLevel = [entry.level nextLevel];
+        PlainEntry* plainEntry = [PlainEntry entryFromPayload:notification.userInfo];
+        PlainLevel* nextLevel = [plainEntry.level nextLevel];
         // update model
         NSError* error = nil;
-        BOOL success = [self.dataStore entryWithKey:entry.key updateBlock:^(Entry *entry) {
-            entry.level = nextLevel;
+        BOOL success = [self.dataStore entryWithKey:plainEntry.key updateBlock:^(Entry *entry) {
+            entry.level = nextLevel.dictionaryRepresentation;
             entry.learned = @(nextLevel == nil);
         } error:&error];
         if (!success) {
@@ -35,11 +35,11 @@
             [[UIApplication sharedApplication] cancelLocalNotification:notification];
             // schedule next reminder
             if (nextLevel) {
-                [self.notifier scheduleNotificationWithText:entry.textForNotification
-                                                   category:EntryNotifierNotificationCategoryDefinition
+                [self.notifier scheduleNotificationWithText:plainEntry.textForNotification
+                                                   category:EntryNotifierNotificationDefinitionCategory
                                           intervalInSeconds:nextLevel.timeInterval
                                              repeatInterval:nextLevel.repeatTimeInterval
-                                                   userInfo:entry.dictionaryRepresentation];
+                                                   userInfo:plainEntry.dictionaryRepresentation];
             }
         }
     }

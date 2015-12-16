@@ -8,7 +8,11 @@
 
 #import "Entry.h"
 
+#import "PlainEntry.h"
+#import "PlainLevel.h"
+
 @interface Entry (BAMAdditions)
 + (NSArray*)fetchEntriesInContext:(NSManagedObjectContext*)context;
 + (NSFetchRequest*)fetchRequest;
+- (PlainEntry*)plainEntry;
 @end

@@ -49,6 +49,7 @@
     if ([UIApplication sharedApplication].applicationState == UIApplicationStateActive) {
         return;// ignore notifications now, could increment a badge in future
     }
+   
 }
 
 - (void)application:(UIApplication *)application didRegisterUserNotificationSettings:(UIUserNotificationSettings *)notificationSettings

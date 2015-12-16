@@ -28,20 +28,23 @@
         NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:signature];
         invocation.selector = selector;
         invocation.target = [self class];
-        [invocation setReturnValue:&nextLevel];
         [invocation invoke];
+        [invocation getReturnValue:&nextLevel];
     }
     return nextLevel;
 }
 
 + (instancetype)levelFromPayload:(NSDictionary*)payload
 {
-    PlainLevel* level = [[PlainLevel alloc] init];
-    level.difficulty = [payload[@"difficulty"] unsignedIntegerValue];
-    level.timeInterval = [payload[@"timeInterval"] doubleValue];
-    level.repeatTimeInterval = [payload[@"repeatTimeInterval"] unsignedIntegerValue];
-    level.type = [(NSNumber*)payload[@"type"] unsignedIntegerValue];
-    return level;
+    if(payload) {
+        PlainLevel* level = [[PlainLevel alloc] init];
+        level.difficulty = [payload[@"difficulty"] unsignedIntegerValue];
+        level.timeInterval = [payload[@"timeInterval"] doubleValue];
+        level.repeatTimeInterval = [payload[@"repeatTimeInterval"] unsignedIntegerValue];
+        level.type = [(NSNumber*)payload[@"type"] unsignedIntegerValue];
+        return level;
+    }
+    return nil;
 }
 
 + (instancetype)level1
@@ -63,6 +66,7 @@
     level.timeInterval = 60 * 60;
     return level;
 }
+
 + (instancetype)level3
 {
     PlainLevel* level = [PlainLevel new];

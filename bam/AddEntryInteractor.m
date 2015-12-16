@@ -9,9 +9,10 @@
 #import "AddEntryInteractor.h"
 
 #import "EntryDataStore.h"
-#import "Entry.h"
+#import "Entry+BAMAdditions.h"
 
 @interface AddEntryInteractor ()
+@property(nonatomic, copy) NSString* lastSavedEntryKey;
 @property(nonatomic, strong, readwrite)EntryDataStore* dataStore;
 @end
 
@@ -28,11 +29,18 @@
 
 -(BOOL)addEntryWithKey:(NSString*)key value:(NSString*)value level:(id)level error:(NSError**)pError
 {
+    self.lastSavedEntryKey = key;
     return [self.dataStore entryWithAddBlock:^(Entry *entry) {
         entry.key = key;
         entry.value = value;
         entry.level = level;
     } error:pError];
+}
+
+-(PlainEntry*)lastSavedEntry
+{
+    Entry* entry = [self.dataStore findEntryWithKey:self.lastSavedEntryKey error:nil];
+    return [entry plainEntry];
 }
 
 -(NSUInteger)countEntries

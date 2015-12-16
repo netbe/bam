@@ -47,23 +47,28 @@ static NSString* const kModelName = @"Model";
     self.model = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
     
     self.persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:self.model];
-    
+    NSString* storeType = nil;
+    NSURL *storeURL = nil;
     // add Stores
-    NSURL *storeURL = [NSURL fileURLWithPath:[[self.class applicationDocumentsDirectory] stringByAppendingPathComponent:self.filename]];
-    
-    if (self.options & CoreDataStackForceRemoveFileOption && [[NSFileManager defaultManager] fileExistsAtPath:storeURL.absoluteString])  {
-        // TODO: remove other aliases -shm -wal
-        if (![[NSFileManager defaultManager] removeItemAtURL:storeURL error:&localError]) {
-            NSLog(@"error setup CoreData %@", localError);
-            if (pError) {
-                *pError = localError;
-            }
-            return NO;
-        }
+    if(self.options & CoreDataStackInMemoryOption) {
+        storeType = NSSQLiteStoreType;
+        NSURL *storeURL = [NSURL fileURLWithPath:[[self.class applicationDocumentsDirectory] stringByAppendingPathComponent:self.filename]];
         
+        if (self.options & CoreDataStackForceRemoveFileOption && [[NSFileManager defaultManager] fileExistsAtPath:storeURL.absoluteString])  {
+            // TODO: remove other aliases -shm -wal
+            if (![[NSFileManager defaultManager] removeItemAtURL:storeURL error:&localError]) {
+                NSLog(@"error setup CoreData %@", localError);
+                if (pError) {
+                    *pError = localError;
+                }
+                return NO;
+            }
+            
+        }
+    }else {
+        storeType = NSInMemoryStoreType;
     }
-    
-    if (![self.persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType
+    if (![self.persistentStoreCoordinator addPersistentStoreWithType:storeType
                                                        configuration:nil
                                                                  URL:storeURL
                                                              options:@{NSMigratePersistentStoresAutomaticallyOption: @(YES),NSInferMappingModelAutomaticallyOption: @(YES)}

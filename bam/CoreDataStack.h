@@ -12,7 +12,8 @@
 typedef NS_OPTIONS(NSUInteger, CoreDataStackOptions) {
     CoreDataStackNoneOption = 1 << 0,
     CoreDataStackForceRemoveFileOption = 1 << 1,
-    CoreDataStackNoBackupOption = 1 << 2
+    CoreDataStackNoBackupOption = 1 << 2,
+    CoreDataStackInMemoryOption = 1 << 3
 };
 
 @interface CoreDataStack : NSObject

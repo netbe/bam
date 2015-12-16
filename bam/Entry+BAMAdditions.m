@@ -29,4 +29,12 @@
     return request;
 }
 
+- (PlainEntry*)plainEntry
+{
+    PlainEntry * plainEntry = [[PlainEntry alloc] init];
+    plainEntry.key = self.key;
+    plainEntry.value = self.value;
+    plainEntry.level = [PlainLevel levelFromPayload:self.level];
+    return plainEntry;
+}
 @end

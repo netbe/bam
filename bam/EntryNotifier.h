@@ -10,8 +10,10 @@
 
 extern NSString *const EntryNotifierNotificationAgreement;
 extern NSString *const EntryNotifierNotificationAgreementDeniedKey;
-extern NSString *const EntryNotifierNotificationCategoryDefinition;
-extern NSString *const EntryNotifierNotificationCategoryDefinitionAction;
+extern NSString *const EntryNotifierNotificationDefinitionCategory;
+extern NSString *const EntryNotifierNotificationDefinitionAction;
+extern NSString *const EntryNotifierNotificationQuizCategory;
+extern NSString *const EntryNotifierNotificationAnswerAction;
 
 @interface EntryNotifier : NSObject
 @property(nonatomic, assign)NSUInteger defaultTime;

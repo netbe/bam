@@ -10,8 +10,8 @@
 
 #import "EntryDataStore.h"
 #import "Entry.h"
-#import "PlainEntry.h"
-#import "PlainLevel.h"
+#import "Entry+BAMAdditions.h"
+
 @interface ListEntryInteractor ()
 @property(nonatomic, strong)EntryDataStore* dataStore;
 @end
@@ -32,11 +32,10 @@
     NSMutableArray* plainEntries = [[NSMutableArray alloc] init];
     NSArray* entries = [self.dataStore findAllEntriesWithError:NULL];
     for (Entry* entry in entries) {
-        PlainEntry * plainEntry = [[PlainEntry alloc] init];
-        plainEntry.key = entry.key;
-        plainEntry.value = entry.value;
-        plainEntry.level = [PlainLevel levelFromPayload:entry.level];
-        [plainEntries addObject:plainEntry];
+        PlainEntry* plainEntry = [entry plainEntry];
+        if(plainEntry) {
+            [plainEntries addObject:entry.plainEntry];
+        }
     }
     return plainEntries;
 }
